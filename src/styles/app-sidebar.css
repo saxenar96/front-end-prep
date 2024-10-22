@@ -1,0 +1,10 @@
+.curr-path {
+    border: 1px solid #18181B;
+    border-radius: 6px;
+    background-color: #18181B;
+    color: #FAFAFA;
+}
+.curr-path:hover {
+    background-color: #18181B;
+    color: #FAFAFA;
+}

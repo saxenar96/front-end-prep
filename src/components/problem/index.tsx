@@ -1,3 +1,4 @@
+'use client'
 import { Children, useEffect, useState } from "react";
 import { ProblemProps } from "./config";
 import './index.css';

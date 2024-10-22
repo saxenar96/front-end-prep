@@ -1,5 +1,5 @@
-import { Calendar, ChevronDown, Home, Inbox, Plus, Search, Settings } from "lucide-react"
-
+'use client'
+import { ChevronDown, Home, Plus, Search, Settings, SquareSigma } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -11,6 +11,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
+import { usePathname } from "next/navigation"
+import '../styles/app-sidebar.css'
 
 const menuItems = [
   {
@@ -24,9 +26,9 @@ const menuItems = [
     icon: Plus,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "Summation",
+    url: "/easy/summation",
+    icon: SquareSigma,
   },
   {
     title: "Search",
@@ -41,6 +43,7 @@ const menuItems = [
 ]
 
 export function AppSidebar() {
+  const currPath = usePathname()
   return (
     <Sidebar>
       <SidebarContent>
@@ -56,8 +59,13 @@ export function AppSidebar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {menuItems.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                  <SidebarMenuItem
+                  key={item.title}
+                  >
+                    <SidebarMenuButton
+                      className={item.url === currPath ? 'curr-path' : ''}
+                      asChild
+                    >
                       <a href={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
