@@ -2,28 +2,27 @@
     @apply flex w-full gap-[16px];
 
     .problem-desc {
-        border: 1px solid hsl(var(--sidebar-foreground));
-        border-radius: 8px;
         @apply w-full flex flex-col min-w-[400px] p-[1.25rem] max-w-[560px];
-
-        h1 {
-            font-size: xx-large;
-            @apply font-semibold;
-        }
-
-        h2 {
-            font-size: large;
-            @apply font-semibold my-4;
-        }
+    }
     
-        h3 {
-            font-size: medium;
-            @apply mb-2;
-        }
+    h1 {
+        font-size: xx-large;
+        @apply font-semibold;
+    }
+
+    h2 {
+        font-size: large;
+        @apply font-semibold;
+    }
+
+    h3 {
+        font-size: medium;
+        @apply mb-2;
     }
 
     .problem-space {
         @apply flex flex-col w-full gap-[20px];
+        position: relative;
 
         > * {
             border: 1px solid hsl(var(--sidebar-foreground));

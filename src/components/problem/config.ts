@@ -11,3 +11,9 @@ export interface ProblemProps {
     description: ProblemDescriptionBlock[];
     tags?: string[];
 }
+
+export interface ProblemCardProps {
+    title: string;
+    description?: string;
+    children: ReactNode;
+}

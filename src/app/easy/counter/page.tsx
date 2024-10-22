@@ -1,6 +1,8 @@
+'use client'
+
 import Problem from "@/components/problem";
-import Dev from "./dev";
-import Soln from "./soln";
+import Dev from "./dev/dev";
+import Soln from "./soln/soln";
 import { ProblemDescriptionBlock } from "@/components/problem/config";
 
 export default function Counter() {
