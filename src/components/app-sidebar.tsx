@@ -1,4 +1,4 @@
-import { Calendar, ChevronDown, Home, Inbox, Search, Settings } from "lucide-react"
+import { Calendar, ChevronDown, Home, Inbox, Plus, Search, Settings } from "lucide-react"
 
 import {
   Sidebar,
@@ -21,7 +21,7 @@ const menuItems = [
   {
     title: "Counter",
     url: "/easy/counter",
-    icon: Inbox,
+    icon: Plus,
   },
   {
     title: "Calendar",

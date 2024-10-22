@@ -39,12 +39,14 @@ export default function Problem(props: ProblemProps) {
                 <ProblemCard
                     title='Your Output'
                     description="The output of your code for this problem"
+                    key='problem_card_dev'
                 >
                     <div className="problem-space">{devComponent}</div>
                 </ProblemCard>
                 <ProblemCard
                     title='Solution'
-                    description="The expected output of the problem"
+                    description="The expected output from the problem"
+                    key='problem_card_soln'
                 >
                     <div className="problem-space">{solnComponent}</div>
                 </ProblemCard>
