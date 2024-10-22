@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
       <SidebarProvider>
         <AppSidebar />
-        <main>
+        <main className="w-full p-[24px]">
           <SidebarTrigger />
           {children}
         </main>
