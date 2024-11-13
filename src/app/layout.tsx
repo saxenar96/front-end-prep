@@ -58,7 +58,7 @@ export default function RootLayout({
               </BreadcrumbList>
             </Breadcrumb>
           </header>
-          <main className=" flex flex-col w-full p-[24px] overflow-hidden">
+          <main className=" flex flex-col w-full p-[24px] overflow-hidden h-full">
             {children}
           </main>
       </SidebarInset>
