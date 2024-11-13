@@ -2,9 +2,15 @@
 import { ProblemDescriptionBlock } from "@/components/problem/config";
 
 export enum PROBLEM_DIFFICULTY {
-    Easy = 'Easy',
-    Medium = 'Medium',
-    Hard = 'Hard'
+    Easy = 'easy',
+    Medium = 'medium',
+    Hard = 'hard'
+}
+
+export enum DIFFICULTY_TITLES {
+    'easy' = 'Easy',
+    'medium' = 'Medium',
+    'hard' = 'Hard'
 }
 
 export const difficultyList = [PROBLEM_DIFFICULTY.Easy, PROBLEM_DIFFICULTY.Medium, PROBLEM_DIFFICULTY.Hard]

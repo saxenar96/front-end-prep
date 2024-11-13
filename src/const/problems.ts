@@ -9,7 +9,7 @@ import { toHyphenCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
     {
-        id: '1',
+        id: 'counter',
         title: 'Counter',
         content: [
             {
@@ -34,7 +34,7 @@ const problems: ProblemInfo[] = [
         icon: Plus
     },
     {
-        id: '2',
+        id: 'summation',
         title: 'Summation',
         content: [
             {

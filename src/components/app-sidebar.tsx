@@ -14,7 +14,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/r
 import { usePathname } from "next/navigation"
 import '../styles/app-sidebar.css'
 import { getProblemsByDifficulty } from "@/const/problems"
-import { difficultyList } from "@/types/problem"
+import { DIFFICULTY_TITLES, difficultyList } from "@/types/problem"
 
 // const menuItems = [
 //   {
@@ -56,7 +56,7 @@ export function AppSidebar() {
                 <SidebarGroup>
                   <SidebarGroupLabel asChild>
                     <CollapsibleTrigger>
-                        {diff}
+                        {DIFFICULTY_TITLES[diff]}
                         <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                     </CollapsibleTrigger>
                   </SidebarGroupLabel>
