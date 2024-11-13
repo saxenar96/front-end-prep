@@ -1,5 +1,6 @@
+'use client'
 import { useState } from 'react'
-import './index.css'
+import './soln.css'
 
 export default function Soln() {
     const [count, setCount] = useState(0)
