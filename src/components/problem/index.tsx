@@ -24,7 +24,7 @@ export default function Problem(props: ProblemProps) {
                     })
                 }
             </div>
-            <div className='flex flex-col gap-[16px]'>
+            <div className='flex flex-col gap-[16px] w-full min-w-[490px]'>
                 <ProblemCard
                     title='Your Output'
                     description="The output of your code for this problem"

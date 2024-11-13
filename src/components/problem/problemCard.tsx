@@ -13,7 +13,7 @@ export function ProblemCard(props: ProblemCardProps) {
   const { component: Component } = props
 
   return (
-    <Card className="w-full">
+    <Card className="w-full h-full">
       <CardHeader>
         <CardTitle className="inline-flex gap-1">
             <span>{ props.title }</span>
