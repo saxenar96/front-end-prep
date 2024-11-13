@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface ProblemDescriptionBlock {
     header?: string;
@@ -6,14 +6,15 @@ export interface ProblemDescriptionBlock {
 }
 
 export interface ProblemProps {
-    children: ReactNode;
     title: string;
     description: ProblemDescriptionBlock[];
+    devComponent: () => JSX.Element;
+    solnComponent: () => JSX.Element;
     tags?: string[];
 }
 
 export interface ProblemCardProps {
     title: string;
     description?: string;
-    children: ReactNode;
+    component: () => JSX.Element;
 }

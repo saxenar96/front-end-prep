@@ -10,6 +10,8 @@ import { CustomTooltip } from "../ui/customTooltip"
 import { CircleHelp } from "lucide-react"
 
 export function ProblemCard(props: ProblemCardProps) {
+  const { component: Component } = props
+
   return (
     <Card className="w-full">
       <CardHeader>
@@ -19,17 +21,17 @@ export function ProblemCard(props: ProblemCardProps) {
                 <CustomTooltip
                     content={props.description}
                 >
-                    <CircleHelp
-                        height={16}
-                        width={16}
-                        stroke="#3F3F46B2"
-                    />
+                  <CircleHelp
+                      height={16}
+                      width={16}
+                      stroke="#3F3F46B2"
+                  />
                 </CustomTooltip>
             </span>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {props.children}
+        <Component />
       </CardContent>
     </Card>
   )

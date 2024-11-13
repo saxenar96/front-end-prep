@@ -1,25 +1,13 @@
 'use client'
-import { Children, useEffect, useState } from "react";
+
+import { useEffect } from "react";
 import { ProblemProps } from "./config";
 import './index.css';
 import { ProblemCard } from "./problemCard";
 
 export default function Problem(props: ProblemProps) {
-    const { title, description } = props
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [ devComponent, setDevComponent ] = useState<any>(undefined)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [ solnComponent, setSolnComponent ] = useState<any>(undefined)
+    const { title, description, devComponent: Dev, solnComponent: Soln } = props
 
-    useEffect(() => {
-        Children.forEach(props.children, (child, index) => {
-            if (index === 0) {
-                setDevComponent(child)
-            } else if (index === 1) {
-                setSolnComponent(child)
-            }
-        })
-    }, [props.children])
     return(
         <div className='problem'>
             <div className='problem-desc rounded-xl border bg-card text-card-foreground shadow'>
@@ -41,16 +29,14 @@ export default function Problem(props: ProblemProps) {
                     title='Your Output'
                     description="The output of your code for this problem"
                     key='problem_card_dev'
-                >
-                    <div className="problem-space">{devComponent}</div>
-                </ProblemCard>
+                    component={Dev}
+                />
                 <ProblemCard
                     title='Solution'
                     description="The expected output from the problem"
                     key='problem_card_soln'
-                >
-                    <div className="problem-space">{solnComponent}</div>
-                </ProblemCard>
+                    component={Soln}
+                />
             </div>
         </div>
     )
