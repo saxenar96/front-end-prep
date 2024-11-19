@@ -2,7 +2,7 @@
     @apply flex w-full gap-[16px] h-full;
 
     .problem-desc {
-        @apply w-full flex flex-col min-w-[490px] p-[1.25rem];
+        @apply w-full flex flex-col min-w-[490px] p-[1.25rem] gap-2;
     }
     
     h1 {

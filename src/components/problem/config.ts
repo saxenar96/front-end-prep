@@ -13,8 +13,14 @@ export interface ProblemProps {
     tags?: string[];
 }
 
-export interface ProblemCardProps {
+export interface TabProps {
     title: string;
+    description: string;
+    component?: () => JSX.Element;
+}
+
+export interface ProblemCardProps {
+    title?: string;
     description?: string;
     component: () => JSX.Element;
 }
