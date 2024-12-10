@@ -3,9 +3,11 @@
 import { useState, useEffect, ReactElement } from "react";
 import { ProblemProps } from "./config";
 import './index.css';
-import { ProblemCard } from "./problemCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import SolutionTab from "./problemTab";
+import { renderComponentFromString } from "@/utils/executeCode";
+import { CodeEditor } from "../codeEditor";
+import { defaultCodeSnippet } from "../codeEditor/const";
 
 const problemTabs = ['Description', 'Output', 'Solution', 'Editorial']
 
@@ -13,6 +15,9 @@ export default function Problem(props: ProblemProps) {
     const { title, description, devComponent: Dev, solnComponent: Soln } = props
     const [ leftTab, setLeftTab ] = useState(problemTabs[0])
     const [ leftTabContent, setLeftTabContent ] = useState<ReactElement | null>(null)
+
+    const [ codeString, setCodeString ] = useState(defaultCodeSnippet)
+    const [ codeContent, setCodeContent ] = useState<ReactElement | null>(null)
 
     const updateCurrentTab = (data: string) => {
         setLeftTab(data)
@@ -49,14 +54,37 @@ export default function Problem(props: ProblemProps) {
                     />
                 )
                 break;
+            case 'Output':
+                content = codeContent
+                break;
             default:
                 content = (
                     <>Something Else</>
                 )
         }
 
-        setLeftTabContent(content)
+        if (content) {
+            setLeftTabContent(content)
+        }
     }, [leftTab])
+
+    useEffect(() => {
+        const content = renderComponentFromString(codeString)
+        if (content) {
+            setCodeContent(content)
+            setLeftTab(problemTabs[1])
+        }
+    }, [codeString])
+
+    useEffect(() => {
+        if (codeContent && codeString !== '') {
+            setLeftTabContent(codeContent)
+        }
+    }, [codeContent])
+
+    const handleDevCodeChange = (code: string) => {
+        setCodeString(code)
+    }
 
     return(
         <div className='problem'>
@@ -68,7 +96,7 @@ export default function Problem(props: ProblemProps) {
                     <TabsList>
                         {
                             problemTabs.map(problem => (
-                                <TabsTrigger value={problem}>
+                                <TabsTrigger key={problem} value={problem}>
                                     <TabsContent value={leftTab}>
                                         { problem }
                                     </TabsContent>
@@ -80,11 +108,9 @@ export default function Problem(props: ProblemProps) {
                 { leftTabContent }
             </div>
             <div className='flex flex-col gap-[16px] w-full min-w-[490px]'>
-                <ProblemCard
-                    title='Your Output'
-                    description="The output of your code for this problem"
-                    key='problem_card_dev'
-                    component={Dev}
+                <CodeEditor
+                    defaultCode={codeString}
+                    onDevCodeChange={handleDevCodeChange}
                 />
             </div>
         </div>

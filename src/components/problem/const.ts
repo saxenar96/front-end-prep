@@ -1,0 +1,1 @@
+export const defaultCodeSnippet = 'function Solution(props) {\n\treturn (\n\t\t<div>Hello World</div>\n\t)\n}'

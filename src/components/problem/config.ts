@@ -23,4 +23,5 @@ export interface ProblemCardProps {
     title?: string;
     description?: string;
     component: () => JSX.Element;
+    onDevCodeChange: (code: string) => void
 }
