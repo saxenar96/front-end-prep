@@ -8,18 +8,12 @@ import {
 import { ProblemCardProps } from "./config"
 import { CustomTooltip } from "../ui/customTooltip"
 import { CircleHelp } from "lucide-react"
-import { Editor } from "@monaco-editor/react"
 import { defaultCodeSnippet } from "./const"
-import { Button } from "../ui/button"
 
 export function ProblemCard(props: ProblemCardProps) {
-  const { title, component: Component, onDevCodeChange } = props
+  const { title, component: Component } = props
 
   const [code, setCode] = useState(defaultCodeSnippet)
-
-  const handleRunCode = () => {
-    onDevCodeChange(code)
-  }
 
   return (
     <Card className="w-full h-full">
@@ -41,17 +35,13 @@ export function ProblemCard(props: ProblemCardProps) {
                       </CustomTooltip>
                   </span>
               </CardTitle>
-              <Button onClick={handleRunCode}>Run</Button>
             </div>
           </CardHeader>
         )
       }
-      <Editor
-        height="75vh"
-        defaultLanguage="javascript"
-        value={code}
-        onChange={(value) => setCode(value ?? '')}
-      />
+      <CardContent>
+        <Component />
+      </CardContent>
     </Card>
   )
 }

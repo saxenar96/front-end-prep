@@ -7,7 +7,7 @@ export interface ProblemDescriptionBlock {
 
 export interface ProblemProps {
     title: string;
-    description: ProblemDescriptionBlock[];
+    description: string;
     devComponent: () => JSX.Element;
     solnComponent: () => JSX.Element;
     tags?: string[];
@@ -23,5 +23,4 @@ export interface ProblemCardProps {
     title?: string;
     description?: string;
     component: () => JSX.Element;
-    onDevCodeChange: (code: string) => void
 }
