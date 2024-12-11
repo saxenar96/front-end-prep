@@ -18,7 +18,6 @@ export const difficultyList = [PROBLEM_DIFFICULTY.Easy, PROBLEM_DIFFICULTY.Mediu
 export interface ProblemInfo {
     id: string;
     title: string;
-    content: ProblemDescriptionBlock[];
     difficulty: PROBLEM_DIFFICULTY;
     solutionComponent: () => JSX.Element;
     devComponent: () => JSX.Element;

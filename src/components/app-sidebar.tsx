@@ -16,34 +16,6 @@ import '../styles/app-sidebar.css'
 import { getProblemsByDifficulty } from "@/const/problems"
 import { DIFFICULTY_TITLES, difficultyList } from "@/types/problem"
 
-// const menuItems = [
-//   {
-//     title: "Home",
-//     url: "/home",
-//     icon: Home,
-//   },
-//   {
-//     title: "Counter",
-//     url: "/easy/counter",
-//     icon: Plus,
-//   },
-//   {
-//     title: "Summation",
-//     url: "/easy/summation",
-//     icon: SquareSigma,
-//   },
-//   {
-//     title: "Search",
-//     url: "#",
-//     icon: Search,
-//   },
-//   {
-//     title: "Settings",
-//     url: "#",
-//     icon: Settings,
-//   },
-// ]
-
 export function AppSidebar() {
   const currPath = usePathname()
   return (

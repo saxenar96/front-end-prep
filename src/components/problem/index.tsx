@@ -8,6 +8,7 @@ import SolutionTab from "./problemTab";
 import { renderComponentFromString } from "@/utils/executeCode";
 import { CodeEditor } from "../codeEditor";
 import { defaultCodeSnippet } from "../codeEditor/const";
+import ReactMarkdown from 'react-markdown';
 
 const problemTabs = ['Description', 'Output', 'Solution', 'Editorial']
 
@@ -28,20 +29,9 @@ export default function Problem(props: ProblemProps) {
         switch(leftTab) {
             case 'Description':
                 content = (
-                    <>
-                        <h1>{ title }</h1>
-                        {
-                            description.map((block, index) => {
-                                const {header, content} = block
-                                return (
-                                    <>
-                                        {header && (<h2 className='my-4'>{header}</h2>)}
-                                        {content?.map(text => (<h3 key={`desc_${index}`}>{ text }</h3>))}
-                                    </>
-                                )
-                            })
-                        }
-                    </>
+                    <ReactMarkdown>
+                        { description }
+                    </ReactMarkdown>
                 )
                 break;
             case 'Solution':
@@ -71,20 +61,22 @@ export default function Problem(props: ProblemProps) {
     useEffect(() => {
         const content = renderComponentFromString(codeString)
         if (content) {
+            console.log('New Content!')
             setCodeContent(content)
             setLeftTab(problemTabs[1])
         }
     }, [codeString])
 
-    useEffect(() => {
-        if (codeContent && codeString !== '') {
-            setLeftTabContent(codeContent)
-        }
-    }, [codeContent])
-
     const handleDevCodeChange = (code: string) => {
         setCodeString(code)
+        setTimeout(() => {
+            setLeftTabContent(codeContent)
+        }, 500)
     }
+
+    useEffect(() => {
+        setLeftTab(problemTabs[0])
+    }, [])
 
     return(
         <div className='problem'>
