@@ -9,6 +9,7 @@ import { renderComponentFromString } from "@/utils/executeCode";
 import { CodeEditor } from "../codeEditor";
 import { defaultCodeSnippet } from "../codeEditor/const";
 import ReactMarkdown from 'react-markdown';
+import 'github-markdown-css';
 
 const problemTabs = ['Description', 'Output', 'Solution', 'Editorial']
 
@@ -25,9 +26,11 @@ export default function Problem(props: ProblemProps) {
 
     const tabMap = {
         'Description': (
+            <div className="prose markdown-body">
             <ReactMarkdown>
                 { description }
             </ReactMarkdown>
+            </div>
         ),
         'Solution': (
             <SolutionTab
