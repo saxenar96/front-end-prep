@@ -41,10 +41,28 @@ function camelToPascal(camelCaseStr) {
     return camelCaseStr[0].toUpperCase() + camelCaseStr.slice(1);
 }
 
+function getTemplatePath() {
+    const currPath = __dirname
+    const currPathSegments = currPath.split('/')
+    currPathSegments.splice(currPathSegments.length - 1, 1)
+    const pathElements = ['src', 'template']
+    currPathSegments.push(...pathElements)
+    return currPathSegments.join('/')
+}
+
+function getProblemsFolderPath() {
+    const currPath = __dirname
+    const currPathSegments = currPath.split('/')
+    currPathSegments.splice(currPathSegments.length - 1, 1)
+    const pathElements = ['src', 'app', 'problems']
+    currPathSegments.push(...pathElements)
+    return currPathSegments.join('/')
+}
+
 // Prompt the user for the folder name
 rl.question('Enter the name of the new problem (use camelCase only!): ', (folderName) => {
-    console.log('DIR NAME', __dirname)
-    const srcFolder = path.join(__dirname, 'source'); // Change this to your source folder
+    const srcFolder = getTemplatePath(); // Change this to your source folder
+    console.log('Template Path', srcFolder)
     const destFolder = path.join(__dirname, folderName);
     const token = 'PROBLEM_SOLUTION_EXPORT_NAME'; // The token to replace
     const tokenReplacement = camelToPascal(folderName);
@@ -52,6 +70,10 @@ rl.question('Enter the name of the new problem (use camelCase only!): ', (folder
     try {
         // Copy the folder and replace the token
         copyFolderWithTokenReplacement(srcFolder, destFolder, token, tokenReplacement);
+        
+        const problemsFolderPath = getProblemsFolderPath()
+        fs.renameSync(destFolder, `${problemsFolderPath}/${folderName}`);
+
         console.log(`Folder '${folderName}' created successfully with content copied and token replaced.`);
     } catch (err) {
         console.error('An error occurred:', err.message);
