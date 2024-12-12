@@ -69,7 +69,7 @@ export default function Problem(props: ProblemProps) {
                     value={leftTab}
                     onValueChange={updateCurrentTab}
                 >
-                    <TabsList>
+                    <TabsList className="mb-[24px]">
                         {
                             problemTabs.map(tabName => (
                                 <TabsTrigger key={tabName} value={tabName}>{tabName}</TabsTrigger>
