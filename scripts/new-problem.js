@@ -90,8 +90,6 @@ function insertLineInFile(filePath, lineToInsert, lineNumber) {
 
     // Write the updated content back to the file
     fs.writeFileSync(filePath, lines.join('\n'), 'utf8');
-
-    console.log(`Inserted line at line number ${lineNumber} in file: ${filePath}`);
 }
 
 /**
@@ -116,12 +114,65 @@ function getLineNumber(filePath, searchString) {
     return -1;
 }
 
-// Prompt the user for the folder name
-rl.question('Enter the name of the new problem (use camelCase only!): ', (folderName) => {
-    const srcFolder = getTemplatePath(); // Change this to your source folder
-    const destFolder = path.join(__dirname, folderName);
-    const token = 'PROBLEM_SOLUTION_EXPORT_NAME'; // The token to replace
-    const tokenReplacement = camelToPascal(folderName);
+function askQuestions(questions) {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        terminal: false
+    });
+
+    let answers = [];
+    let index = 0;
+
+    return new Promise((resolve) => {
+        const askNextQuestion = () => {
+            if (index < questions.length) {
+                // Write the question manually to avoid readline behavior
+                process.stdout.write(questions[index] + ' ');
+
+                // Listen for user input directly
+                rl.once('line', (line) => {
+                    answers.push(line.trim());
+                    index++;
+                    askNextQuestion();
+                });
+            } else {
+                rl.close();
+                resolve(answers);
+            }
+        };
+
+        askNextQuestion();
+    });
+}
+
+function getDifficultyEnumVal(difficulty) {
+    if (difficulty === 'medium' || difficulty === 'm') {
+        return 'Medium'
+    }
+    
+    if (difficulty === 'hard' || difficulty === 'h') {
+        return 'Hard'
+    }
+
+    return 'Easy'
+}
+
+async function main() {
+    const questions = [
+        'Enter the name of the new problem (use camelCase only!)',
+        'What is the difficulty of the problem? (Easy, Medium, or Hard)',
+        'Which icon do you want to use? (In the side drawer)',
+    ];
+
+    try {
+        const answers = await askQuestions(questions);
+        const [folderName, difficulty, iconName] = answers
+
+        const srcFolder = getTemplatePath(); // Change this to your source folder
+        const destFolder = path.join(__dirname, folderName);
+        const token = 'PROBLEM_SOLUTION_EXPORT_NAME'; // The token to replace
+        const tokenReplacement = camelToPascal(folderName);
 
     try {
         // Copy the folder and replace the token
@@ -140,9 +191,9 @@ rl.question('Enter the name of the new problem (use camelCase only!): ', (folder
         const problemEntry = `{
             id: '${folderName}',
             title: '${tokenReplacement}',
-            difficulty: 'easy',
+            difficulty: PROBLEM_DIFFICULTY.${getDifficultyEnumVal(difficulty.toLowerCase())},
             solutionComponent: ${tokenReplacement}Soln,
-            icon: SquareSigma
+            icon: ${iconName !== '' ? iconName : 'SquareSigma'}
         },`
         const lineNumber = getLineNumber(problemTSPath, 'const problems: ProblemInfo[] = [')
         if (lineNumber === -1) {
@@ -155,6 +206,10 @@ rl.question('Enter the name of the new problem (use camelCase only!): ', (folder
     } catch (err) {
         console.error('An error occurred:', err.message);
     }
+        
+    } catch (error) {
+        console.error('Error processing request:', error);
+    }
+}
 
-    rl.close();
-});
+main()
