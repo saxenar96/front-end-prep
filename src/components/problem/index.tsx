@@ -11,7 +11,7 @@ import { defaultCodeSnippet } from "../codeEditor/const";
 import ReactMarkdown from 'react-markdown';
 import 'github-markdown-css';
 
-const problemTabs = ['Description', 'Output', 'Solution', 'Editorial']
+const problemTabs = ['Description', 'Output', 'Solution']
 
 export default function Problem(props: ProblemProps) {
     const { title, description, solnComponent: Soln } = props
@@ -26,11 +26,9 @@ export default function Problem(props: ProblemProps) {
 
     const tabMap = {
         'Description': (
-            <div className="prose markdown-body">
-            <ReactMarkdown>
+            <ReactMarkdown className="prose markdown-body">
                 { description }
             </ReactMarkdown>
-            </div>
         ),
         'Solution': (
             <SolutionTab
@@ -40,10 +38,7 @@ export default function Problem(props: ProblemProps) {
                 component={Soln}
             />
         ),
-        'Output': codeContent,
-        'Editorial': (
-            <>Something Else</>
-        )
+        'Output': codeContent
     }
 
     useEffect(() => {
