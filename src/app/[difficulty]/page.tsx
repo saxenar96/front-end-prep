@@ -21,11 +21,16 @@ export default async function ProblemPage({
     return (
         <div>
             <h1 className="text-[2em] pb-[0.3em] font-bold">{ `${title} Problems` }</h1>
-            <div className="flex flex-col gap-1 justify-start items-start">
+            <div className="flex flex-col justify-start items-start">
                 {
                     problemSet.map(problem => (
                         <Button variant="link" asChild>
-                            <Link href={problem.url}>{problem.title}</Link>
+                            <Link href={problem.url}>
+                                <>
+                                    {problem.icon && (<problem.icon />)}
+                                    {problem.title}
+                                </>
+                            </Link>
                         </Button>
                     ))
                 }
