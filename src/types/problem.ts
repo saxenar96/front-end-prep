@@ -20,7 +20,7 @@ export interface ProblemInfo {
     title: string;
     difficulty: PROBLEM_DIFFICULTY;
     solutionComponent: () => JSX.Element;
-    devComponent: () => JSX.Element;
+    devComponent?: () => JSX.Element;
     icon?: any;
 }
 

@@ -134,22 +134,22 @@ rl.question('Enter the name of the new problem (use camelCase only!): ', (folder
         // Add import to problems.ts
         const problemTSPath = getProblemsTSPath()
         const importStatement = `import ${tokenReplacement}Soln from '@/app/problems/${folderName}/soln'`
-        insertLineInFile(problemTSPath, 2, importStatement)
+        insertLineInFile(problemTSPath, importStatement, 2)
 
         // Create entry for problem in problems.ts
         const problemEntry = `{
             id: '${folderName}',
             title: '${tokenReplacement}',
-            difficulty: easy,
+            difficulty: 'easy',
             solutionComponent: ${tokenReplacement}Soln,
             icon: SquareSigma
-        }`
+        },`
         const lineNumber = getLineNumber(problemTSPath, 'const problems: ProblemInfo[] = [')
         if (lineNumber === -1) {
             console.log('Error: text not found')
             return
         }
-        insertLineInFile(problemTSPath, lineNumber + 1, problemEntry)
+        insertLineInFile(problemTSPath, problemEntry, lineNumber + 1)
 
         console.log(`Folder '${folderName}' created successfully with content copied and token replaced.`);
     } catch (err) {
