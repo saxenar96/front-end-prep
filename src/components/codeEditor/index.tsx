@@ -10,9 +10,9 @@ import { defaultCodeSnippet } from './const'
 import { Button } from "../ui/button"
 
 export function CodeEditor(props: CodeEditorProps) {
-  const { onDevCodeChange } = props
+  const { onDevCodeChange, defaultCode } = props
 
-  const [code, setCode] = useState(defaultCodeSnippet)
+  const [code, setCode] = useState(defaultCode)
 
   const handleRunCode = () => {
     onDevCodeChange(code)

@@ -4,7 +4,7 @@
 
 In this problem, you will displaying the sum of a list of elements.
 
-The user will have an option to enter a number in a text field. When they click ENTER, you must display the item in the list under the input. When a new item is added to the list, the sum value should be updated to reflect that value.
+The user will have an option to enter a number in a text field. When they click `ENTER`, you must display the item in the list under the input. When a new item is added to the list, the sum value should be updated to reflect that value.
 
 Each item in the list also has a button to delete it. After deleting an item, that value should be subtracted from the total sum.
 

@@ -17,7 +17,7 @@ export default function Problem(props: ProblemProps) {
     const { title, description, solnComponent: Soln } = props
     const [ leftTab, setLeftTab ] = useState(problemTabs[0])
 
-    const [ codeString, setCodeString ] = useState(defaultCodeSnippet)
+    const [ codeString, setCodeString ] = useState(localStorage.getItem(title) || defaultCodeSnippet)
     const [ codeContent, setCodeContent ] = useState<ReactElement | null>(null)
 
     const updateCurrentTab = (data: string) => {
@@ -42,12 +42,17 @@ export default function Problem(props: ProblemProps) {
     }
 
     useEffect(() => {
+        saveInLocalStorage(codeString)
         const content = renderComponentFromString(codeString)
         if (content) {
             setCodeContent(content)
             setLeftTab(problemTabs[1])
         }
     }, [codeString])
+
+    const saveInLocalStorage = (codeVal: string) => {
+        localStorage.setItem(title, codeVal)
+    }
 
     const handleDevCodeChange = (code: string) => {
         setCodeString(code)
