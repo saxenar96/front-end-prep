@@ -14,7 +14,7 @@ import 'github-markdown-css';
 const problemTabs = ['Description', 'Output', 'Solution', 'Editorial']
 
 export default function Problem(props: ProblemProps) {
-    const { title, description, devComponent: Dev, solnComponent: Soln } = props
+    const { title, description, solnComponent: Soln } = props
     const [ leftTab, setLeftTab ] = useState(problemTabs[0])
 
     const [ codeString, setCodeString ] = useState(defaultCodeSnippet)

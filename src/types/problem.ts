@@ -20,15 +20,9 @@ export interface ProblemInfo {
     title: string;
     difficulty: PROBLEM_DIFFICULTY;
     solutionComponent: () => JSX.Element;
-    devComponent?: () => JSX.Element;
     icon?: any;
 }
 
 export interface ProblemEntry extends ProblemInfo {
     url: string
-}
-
-export interface ProblemContextValue {
-    dev?: () => JSX.Element;
-    soln?: () => JSX.Element;
 }

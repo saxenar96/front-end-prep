@@ -46,7 +46,6 @@ export default function ProblemPage({
                     <Problem
                         title={problem.title}
                         description={problemDesc}
-                        devComponent={problem.devComponent}
                         solnComponent={problem.solutionComponent}
                     />
                 )

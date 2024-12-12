@@ -8,7 +8,6 @@ export interface ProblemDescriptionBlock {
 export interface ProblemProps {
     title: string;
     description: string;
-    devComponent: () => JSX.Element;
     solnComponent: () => JSX.Element;
     tags?: string[];
 }
