@@ -6,9 +6,9 @@ function NumItem(props) {
     const { num, onDelete } = props
 
     return (
-        <div className='flex gap-4 items-center justify-center border-solid border-2 border-black p-2'>
+        <div className='flex gap-4 items-center justify-between border-solid border-2 border-black p-[8px]'>
             {num}
-            <button onClick={onDelete}>X</button>
+            <button className='text-xs' onClick={onDelete}>X</button>
         </div>
     )
 }
@@ -49,7 +49,7 @@ export default function Soln() {
                     onKeyDown={handleInputKeydown}
                 />
             </div>
-            <div>
+            <div className='w-full h-[250px] grid grid-rows-5 grid-flow-col gap-[8px] auto-cols-[150px]'>
                 {
                     entries.map((item, index) => {
                         return (
