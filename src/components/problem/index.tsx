@@ -10,6 +10,7 @@ import { CodeEditor } from "../codeEditor";
 import { defaultCodeSnippet } from "../codeEditor/const";
 import ReactMarkdown from 'react-markdown';
 import 'github-markdown-css';
+import { Card, CardContent } from "../ui/card";
 
 const problemTabs = ['Description', 'Output', 'Solution']
 
@@ -39,7 +40,13 @@ export default function Problem(props: ProblemProps) {
                 component={Soln}
             />
         ),
-        'Output': codeContent
+        'Output': (
+            <Card>
+                <CardContent>
+                    {codeContent}
+                </CardContent>
+            </Card>
+        )
     }
 
     useEffect(() => {
