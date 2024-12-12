@@ -1,5 +1,4 @@
 import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
-// import { CounterDev, CounterSoln } from "@/app/problems/Counter";
 import CounterDev from '@/app/problems/counter/dev'
 import CounterSoln from '@/app/problems/counter/soln'
 import SummationDev from '@/app/problems/summation/dev'
