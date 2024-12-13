@@ -1,4 +1,4 @@
-export function toHyphenCase(str: string) {
+export function toKebabCase(str: string) {
     return str
         .trim() // Remove any leading/trailing whitespace
         .toLowerCase() // Convert to lowercase

@@ -2,7 +2,7 @@ import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
 import CounterSoln from '@/app/problems/counter/soln'
 import SummationSoln from '@/app/problems/summation/soln'
 import { Plus, SquareSigma } from "lucide-react";
-import { toHyphenCase } from "@/utils/cases";
+import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
     {
@@ -26,7 +26,7 @@ export function getProblemById(id: string): ProblemEntry | undefined {
 
     return res ? {
         ...res,
-        url: `/${res.difficulty}/${toHyphenCase(res.title)}`
+        url: `/${res.difficulty}/${toKebabCase(res.title)}`
     } : undefined
 }
 
@@ -36,7 +36,7 @@ export function getProblemsByDifficulty(difficulty: PROBLEM_DIFFICULTY): Problem
         .map(prob => {
             return {
                 ...prob,
-                url: `/${prob.difficulty}/${toHyphenCase(prob.title)}`
+                url: `/${prob.difficulty}/${toKebabCase(prob.title)}`
             }
         })
 }
