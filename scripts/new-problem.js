@@ -36,9 +36,14 @@ function copyFolderWithTokenReplacement(srcDir, destDir, token, replacement) {
     }
 }
 
-function camelToPascal(camelCaseStr) {
-    if (!camelCaseStr) return ''; // Handle empty or invalid input
-    return camelCaseStr[0].toUpperCase() + camelCaseStr.slice(1);
+function kebabToPascal(kebabCaseStr) {
+    if (!kebabCaseStr) return ''; // Handle empty or invalid input
+    const segments = kebabCaseStr.split('-')
+    let res = ''
+    for (const str of segments) {
+        res += str[0].toUpperCase() + str.slice(1)
+    }
+    return res
 }
 
 function getRootPath() {
@@ -127,12 +132,9 @@ function askQuestions(questions) {
     return new Promise((resolve) => {
         const askNextQuestion = () => {
             if (index < questions.length) {
-                // Write the question manually to avoid readline behavior
-                process.stdout.write(questions[index] + ' ');
-
                 // Listen for user input directly
-                rl.once('line', (line) => {
-                    answers.push(line.trim());
+                rl.question(questions[index] + ' ', (res) => {
+                    answers.push(res.trim());
                     index++;
                     askNextQuestion();
                 });
@@ -158,21 +160,40 @@ function getDifficultyEnumVal(difficulty) {
     return 'Easy'
 }
 
+function toKebabCase(str) {
+    return str
+        .trim() // Remove any leading/trailing whitespace
+        .toLowerCase() // Convert to lowercase
+        .replace(/[\s_]+/g, '-') // Replace spaces and underscores with hyphens
+        .replace(/[^\w-]/g, ''); // Remove any non-word characters except hyphens
+}
+
+function sanitizeName(str) {
+    const segments = str.trim().split(' ')
+    const nameSegments = []
+    for (const s of segments) {
+        nameSegments.push(s[0].toUpperCase() + s.slice(1))
+    }
+    return nameSegments.join(' ')
+}
+
 async function main() {
     const questions = [
-        'Enter the name of the new problem (use camelCase only!)',
+        'Enter the name of the new problem:',
         'What is the difficulty of the problem? (Easy, Medium, or Hard)',
         'Which icon do you want to use? (In the side drawer)',
     ];
 
     try {
         const answers = await askQuestions(questions);
-        const [folderName, difficulty, iconName] = answers
+        const [name, difficulty, iconName] = answers
+        const problemName = sanitizeName(name)
+        const folderName = toKebabCase(problemName)
 
         const srcFolder = getTemplatePath(); // Change this to your source folder
         const destFolder = path.join(__dirname, folderName);
         const token = 'PROBLEM_SOLUTION_EXPORT_NAME'; // The token to replace
-        const tokenReplacement = camelToPascal(folderName);
+        const tokenReplacement = kebabToPascal(folderName);
 
     try {
         // Copy the folder and replace the token
@@ -190,7 +211,7 @@ async function main() {
         // Create entry for problem in problems.ts
         const problemEntry = `{
             id: '${folderName}',
-            title: '${tokenReplacement}',
+            title: '${problemName}',
             difficulty: PROBLEM_DIFFICULTY.${getDifficultyEnumVal(difficulty.toLowerCase())},
             solutionComponent: ${tokenReplacement}Soln,
             icon: ${iconName !== '' ? iconName : 'SquareSigma'}
