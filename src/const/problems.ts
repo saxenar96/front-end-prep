@@ -1,7 +1,8 @@
 import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
+import AccordionSoln from '@/app/problems/accordion/soln'
 import CounterSoln from '@/app/problems/counter/soln'
 import SummationSoln from '@/app/problems/summation/soln'
-import { Plus, SquareSigma } from "lucide-react";
+import { Plus, SquareSigma, ListCollapse } from "lucide-react";
 import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
@@ -18,7 +19,14 @@ const problems: ProblemInfo[] = [
         difficulty: PROBLEM_DIFFICULTY.Easy,
         solutionComponent: SummationSoln,
         icon: SquareSigma
-    }
+    },
+    {
+        id: 'accordion',
+        title: 'Accordion',
+        difficulty: PROBLEM_DIFFICULTY.Easy,
+        solutionComponent: AccordionSoln,
+        icon: ListCollapse
+    },
 ]
 
 export function getProblemById(id: string): ProblemEntry | undefined {
