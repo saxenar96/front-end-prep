@@ -1,12 +1,20 @@
 import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
+import ImageCarouselSoln from '@/app/problems/image-carousel/soln'
 import FileExplorerSoln from '@/app/problems/file-explorer/soln'
 import AccordionSoln from '@/app/problems/accordion/soln'
 import CounterSoln from '@/app/problems/counter/soln'
 import SummationSoln from '@/app/problems/summation/soln'
-import { Plus, SquareSigma, ListCollapse, FolderOpen } from "lucide-react";
+import { Plus, SquareSigma, ListCollapse, FolderOpen, Images } from "lucide-react";
 import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
+    {
+        id: 'image-carousel',
+        title: 'Image Carousel',
+        difficulty: PROBLEM_DIFFICULTY.Medium,
+        solutionComponent: ImageCarouselSoln,
+        icon: Images
+    },
     {
         id: 'file-explorer',
         title: 'File Explorer',
