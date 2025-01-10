@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import React from 'react'
 import './soln.css'
 
 export default function Soln(): JSX.Element {
-    const [count, setCount] = useState(0)
+    const [count, setCount] = React.useState(0)
 
     const handleClick = () => {
         setCount(count + 1)
