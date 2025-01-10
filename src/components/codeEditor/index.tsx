@@ -1,4 +1,4 @@
-import react, { useState } from "react"
+import { useState } from "react"
 import {
   Card,
   CardHeader,
@@ -6,7 +6,6 @@ import {
 } from "@/components/ui/card"
 import { CodeEditorProps } from './config'
 import { Editor } from "@monaco-editor/react"
-import { defaultCodeSnippet } from './const'
 import { Button } from "../ui/button"
 
 export function CodeEditor(props: CodeEditorProps) {

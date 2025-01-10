@@ -1,4 +1,3 @@
-import react, { useState } from "react"
 import {
   Card,
   CardContent,
@@ -8,12 +7,9 @@ import {
 import { ProblemCardProps } from "./config"
 import { CustomTooltip } from "../ui/customTooltip"
 import { CircleHelp } from "lucide-react"
-import { defaultCodeSnippet } from "./const"
 
 export function ProblemCard(props: ProblemCardProps) {
   const { title, component: Component } = props
-
-  const [code, setCode] = useState(defaultCodeSnippet)
 
   return (
     <Card className="w-full h-full">

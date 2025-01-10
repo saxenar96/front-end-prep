@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ProblemDescriptionBlock } from "@/components/problem/config";
-
 export enum PROBLEM_DIFFICULTY {
     Easy = 'easy',
     Medium = 'medium',

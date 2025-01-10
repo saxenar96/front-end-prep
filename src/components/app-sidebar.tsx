@@ -1,5 +1,5 @@
 'use client'
-import { ChevronDown, Home, Plus, Search, Settings, SquareSigma } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -59,38 +59,6 @@ export function AppSidebar() {
           }
           )
         }
-      
-        {/* <Collapsible defaultOpen className="group/collapsible">
-          <SidebarGroup>
-            <SidebarGroupLabel asChild>
-              <CollapsibleTrigger>
-                  Easy
-                  <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-              </CollapsibleTrigger>
-            </SidebarGroupLabel>
-            <CollapsibleContent>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {menuItems.map((item) => (
-                    <SidebarMenuItem
-                      key={item.title}
-                    >
-                      <SidebarMenuButton
-                        className={item.url === currPath ? 'curr-path' : ''}
-                        asChild
-                      >
-                        <a href={item.url}>
-                          <item.icon />
-                          <span>{item.title}</span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible> */}
       </SidebarContent>
     </Sidebar>
   )

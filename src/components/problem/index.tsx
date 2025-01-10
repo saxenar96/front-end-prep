@@ -14,6 +14,10 @@ import { Card, CardContent } from "../ui/card";
 
 const problemTabs = ['Description', 'Output', 'Solution']
 
+interface TabMapType {
+    [key: string]: JSX.Element
+}
+
 export default function Problem(props: ProblemProps) {
     const { title, description, solnComponent: Soln } = props
     const [ leftTab, setLeftTab ] = useState(problemTabs[0])
@@ -26,7 +30,7 @@ export default function Problem(props: ProblemProps) {
         setLeftTab(data)
     }
 
-    const tabMap = {
+    const tabMap: TabMapType = {
         'Description': (
             <ReactMarkdown className="prose markdown-body">
                 { description }
@@ -85,8 +89,8 @@ export default function Problem(props: ProblemProps) {
                         }
                     </TabsList>
                     {
-                        problemTabs.map(tab => (
-                            <TabsContent value={tab}>
+                        problemTabs.map((tab: string, index) => (
+                            <TabsContent key={`problem-tab-${index}`} value={tab}>
                                 { tabMap[tab] }
                             </TabsContent>
                         ))

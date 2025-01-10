@@ -24,7 +24,7 @@ export default async function ProblemPage({
             <div className="flex flex-col justify-start items-start">
                 {
                     problemSet.map(problem => (
-                        <Button variant="link" asChild>
+                        <Button key={problem.id} variant="link" asChild>
                             <Link href={problem.url}>
                                 <>
                                     {problem.icon && (<problem.icon />)}
