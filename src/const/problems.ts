@@ -5,7 +5,7 @@ import TrafficLightSoln from '@/app/problems/traffic-light/soln'
 import ImageCarouselSoln from '@/app/problems/image-carousel/soln'
 import FileExplorerSoln from '@/app/problems/file-explorer/soln'
 import AccordionSoln from '@/app/problems/accordion/soln'
-import { ListCollapse, WholeWord, FolderSync, FolderOpen, Images, OctagonMinus, Plus } from "lucide-react";
+import { ListCollapse, WholeWord, FolderSync, FolderOpen, Images, OctagonMinus } from "lucide-react";
 import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
