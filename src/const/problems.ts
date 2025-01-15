@@ -1,5 +1,5 @@
 import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
-import CounterSoln from '@/app/problems/counter/soln'
+import CounterSoln from '@/app/problems/wordle/soln'
 import WordleSoln from '@/app/problems/wordle/soln'
 import TransferListSoln from '@/app/problems/transfer-list/soln'
 import TrafficLightSoln from '@/app/problems/traffic-light/soln'
