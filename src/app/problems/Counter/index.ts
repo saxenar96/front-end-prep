@@ -1,3 +1,1 @@
-export {default as Counter} from './soln'
-
-
+export {default as CounterSoln} from './soln'
