@@ -1,0 +1,27 @@
+.form {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    input {
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 8px;
+    }
+}
+
+.item-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    gap: 12px;
+}
+
+.item {
+    background-color: #eee;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+}
