@@ -1,23 +1,14 @@
 import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
-import CounterSoln from '@/app/problems/counter/soln'
 import WordleSoln from '@/app/problems/wordle/soln'
 import TransferListSoln from '@/app/problems/transfer-list/soln'
 import TrafficLightSoln from '@/app/problems/traffic-light/soln'
 import ImageCarouselSoln from '@/app/problems/image-carousel/soln'
 import FileExplorerSoln from '@/app/problems/file-explorer/soln'
 import AccordionSoln from '@/app/problems/accordion/soln'
-// import SummationSoln from '@/app/problems/summation/soln'
-import { /**SquareSigma,**/ ListCollapse, WholeWord, FolderSync, FolderOpen, Images, OctagonMinus, Plus } from "lucide-react";
+import { ListCollapse, WholeWord, FolderSync, FolderOpen, Images, OctagonMinus, Plus } from "lucide-react";
 import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
-    {
-        id: 'counter',
-        title: 'Counter',
-        difficulty: PROBLEM_DIFFICULTY.Easy,
-        solutionComponent: CounterSoln,
-        icon: Plus
-    },
     {
         id: 'wordle',
         title: 'Wordle',
@@ -53,13 +44,6 @@ const problems: ProblemInfo[] = [
         solutionComponent: FileExplorerSoln,
         icon: FolderOpen
     },
-    // {
-    //     id: 'summation',
-    //     title: 'Summation',
-    //     difficulty: PROBLEM_DIFFICULTY.Easy,
-    //     solutionComponent: SummationSoln,
-    //     icon: SquareSigma
-    // },
     {
         id: 'accordion',
         title: 'Accordion',
