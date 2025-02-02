@@ -17,7 +17,7 @@ import { useProblem } from "@/hooks/use-problem";
 
 export default function Problem(props: ProblemProps) {
     const { title, description, solnComponent: Soln } = props
-    const [ problemTabs, codeTabs ] = useProblem(props)
+    const { problemTabs, codeTabs, codeButtons, outputTabs } = useProblem(props)
 
     return(
         <div className='problem'>
@@ -31,6 +31,10 @@ export default function Problem(props: ProblemProps) {
             }
             <Panel
                 tabs={codeTabs}
+                actions={codeButtons}
+            />
+            <Panel
+                tabs={outputTabs}
                 actions={[]}
             />
         </div>

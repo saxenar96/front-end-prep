@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, act } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { PanelProps, PanelTabProps } from "./config";
 import './index.css'
+import { Button } from "../ui/button";
 
 function getTabMap(tabs: PanelTabProps[]) {
     const map = new Map()
@@ -14,7 +15,7 @@ function getTabMap(tabs: PanelTabProps[]) {
 }
 
 export function Panel(props: PanelProps) {
-    const { tabs } = props
+    const { tabs, actions } = props
     const [ tabMap, setTabMap ] = useState<Map<string, PanelTabProps>>(getTabMap(tabs))
     const [ tabTitles, setTabTitles ] = useState<string[]>([])
     const [ currentTab, setCurrentTab ] = useState(tabTitles[0])
@@ -38,26 +39,37 @@ export function Panel(props: PanelProps) {
 
     return (
         <div className='problem-desc rounded-xl border bg-card text-card-foreground shadow'>
-            <Tabs
-                value={currentTab}
-                onValueChange={(selectedTab) => setCurrentTab(selectedTab)}
-            >
-                <TabsList className="mb-[24px]">
+            <div className="toolbar">
+                <Tabs
+                    value={currentTab}
+                    onValueChange={(selectedTab) => setCurrentTab(selectedTab)}
+                >
+                    <TabsList className="mb-[24px]">
+                        {
+                            tabTitles.map(tabName => (
+                                <TabsTrigger key={tabName} value={tabName}>{tabName}</TabsTrigger>
+                            ))
+                        }
+                    </TabsList>
+                    {/* {
+                        tabTitles.map((tab: string, index) => (
+                            <TabsContent key={`problem-tab-${index}`} value={tab}>
+                                { tabMap.get(tab)?.content }
+                            </TabsContent>
+                        ))
+                    } */}
+                </Tabs>
+                <div className="actionbar">
                     {
-                        tabTitles.map(tabName => (
-                            <TabsTrigger key={tabName} value={tabName}>{tabName}</TabsTrigger>
+                        actions.map(action => (
+                            <Button onClick={action.onClick}>{action.title}</Button>
                         ))
                     }
-                </TabsList>
-                {
-                    tabTitles.map((tab: string, index) => (
-                        <TabsContent key={`problem-tab-${index}`} value={tab}>
-                            { tabMap.get(tab)?.content }
-                        </TabsContent>
-                    ))
-                }
-            </Tabs>
-            {/* { currentTabData.content } */}
+                </div>
+            </div>
+            <div>
+                {tabMap.get(currentTab)?.content}
+            </div>
         </div>
     )
 }
