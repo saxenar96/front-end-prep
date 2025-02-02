@@ -1,0 +1,34 @@
+.problem {
+    @apply flex w-full gap-[16px] h-full;
+
+    .problem-desc {
+        @apply w-full flex flex-col min-w-[490px] p-[1.25rem] gap-2;
+    }
+    
+    h1 {
+        font-size: xx-large;
+        @apply font-semibold;
+    }
+
+    h2 {
+        font-size: large;
+        @apply font-semibold;
+    }
+
+    h3 {
+        font-size: medium;
+        @apply mb-2;
+    }
+
+    .problem-space {
+        @apply flex flex-col w-full gap-[20px];
+        position: relative;
+
+        > * {
+            border: 1px solid hsl(var(--sidebar-foreground));
+            border-radius: 8px;
+            @apply h-[340px] p-[1.25rem] min-w-[300px];
+            
+        }
+    }
+}
