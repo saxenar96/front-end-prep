@@ -6,10 +6,10 @@ import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbS
 import { Separator } from "@/components/ui/separator";
 import { headers } from "next/headers";
 import { kebabToPascalWithSpaces } from "@/utils/cases";
-import React from "react";
+import React, { useState } from "react";
 
 export const metadata: Metadata = {
-  title: "Front-End Prep",
+  title: "Web Arena",
   description: "App to practice problems for Front End interviews",
 };
 
@@ -29,11 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <SidebarProvider>
+      <SidebarProvider defaultOpen={false}>
         <AppSidebar />
         <SidebarInset>
           <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-            <SidebarTrigger className="-ml-1" />
+            <SidebarTrigger />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>

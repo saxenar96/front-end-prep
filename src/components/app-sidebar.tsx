@@ -6,9 +6,12 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
 import { usePathname } from "next/navigation"
@@ -18,47 +21,56 @@ import { DIFFICULTY_TITLES, difficultyList } from "@/types/problem"
 
 export function AppSidebar() {
   const currPath = usePathname()
+  const { open } = useSidebar()
+
   return (
-    <Sidebar>
+    <Sidebar variant="inset">
+      <SidebarHeader>
+        <div className="flex justify-between pl-[8px]">
+          <h2>Web Arena</h2>
+          <SidebarTrigger />
+        </div>
+      </SidebarHeader>
       <SidebarContent>
-        {
-          difficultyList.map((diff) => {
-            return (
-              <Collapsible key={`group-${diff}`} defaultOpen className="group/collapsible">
-                <SidebarGroup>
-                  <SidebarGroupLabel asChild>
-                    <CollapsibleTrigger>
-                        {DIFFICULTY_TITLES[diff]}
-                        <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                    </CollapsibleTrigger>
-                  </SidebarGroupLabel>
-                  <CollapsibleContent>
-                    <SidebarGroupContent>
-                      <SidebarMenu>
-                        {getProblemsByDifficulty(diff).map((item) => (
-                          <SidebarMenuItem
-                            key={item.title}
+          
+      {
+        difficultyList.map((diff) => {
+          return (
+            <Collapsible key={`group-${diff}`} defaultOpen className="group/collapsible">
+              <SidebarGroup>
+                <SidebarGroupLabel asChild>
+                  <CollapsibleTrigger>
+                      {DIFFICULTY_TITLES[diff]}
+                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  </CollapsibleTrigger>
+                </SidebarGroupLabel>
+                <CollapsibleContent>
+                  <SidebarGroupContent>
+                    <SidebarMenu>
+                      {getProblemsByDifficulty(diff).map((item) => (
+                        <SidebarMenuItem
+                          key={item.title}
+                        >
+                          <SidebarMenuButton
+                            className={item.url === currPath ? 'curr-path' : ''}
+                            asChild
                           >
-                            <SidebarMenuButton
-                              className={item.url === currPath ? 'curr-path' : ''}
-                              asChild
-                            >
-                              <a href={item.url}>
-                                <item.icon />
-                                <span>{item.title}</span>
-                              </a>
-                            </SidebarMenuButton>
-                          </SidebarMenuItem>
-                        ))}
-                      </SidebarMenu>
-                    </SidebarGroupContent>
-                  </CollapsibleContent>
-                </SidebarGroup>
-              </Collapsible>
-            )
-          }
+                            <a href={item.url}>
+                              <item.icon />
+                              <span>{item.title}</span>
+                            </a>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </SidebarMenu>
+                  </SidebarGroupContent>
+                </CollapsibleContent>
+              </SidebarGroup>
+            </Collapsible>
           )
         }
+        )
+      }
       </SidebarContent>
     </Sidebar>
   )
