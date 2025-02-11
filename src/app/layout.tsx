@@ -7,11 +7,27 @@ import { Separator } from "@/components/ui/separator";
 import { headers } from "next/headers";
 import { kebabToPascalWithSpaces } from "@/utils/cases";
 import React, { useState } from "react";
+import { Code } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Web Arena",
   description: "App to practice problems for Front End interviews",
 };
+
+export const problemSetOptions = [
+  {
+    value: 'All Problems',
+    icon: 'code'
+  },
+  {
+    value: 'JavaScript',
+    icon: 'js'
+  },
+  {
+    value: 'React',
+    icon: 'react'
+  }
+]
 
 export default function RootLayout({
   children,
@@ -20,6 +36,12 @@ export default function RootLayout({
 }>) {
   const headerList = headers();
   const pathname = headerList.get('x-current-path');
+  const headerProps = {
+    selectionSet: {
+      options: problemSetOptions,
+      default: 0
+    }
+  }
 
   let pathFragments: string[] = []
   if (pathname) {
@@ -30,7 +52,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
       <SidebarProvider defaultOpen={false}>
-        <AppSidebar />
+        <AppSidebar headerProps={headerProps}/>
         <SidebarInset>
           <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
             <SidebarTrigger />
