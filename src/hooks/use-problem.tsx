@@ -5,7 +5,7 @@ import { ProblemProps } from "@/components/problem/config";
 import { ProblemTab } from "@/components/problem/problemTab";
 import { renderComponentFromString } from "@/utils/executeCode";
 import { Editor } from "@monaco-editor/react";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export function useProblem(problemProps: ProblemProps) {
@@ -50,6 +50,13 @@ export function useProblem(problemProps: ProblemProps) {
         ])
     }, [description, Soln])
 
+    const onRun = useCallback(() => {
+        const content = renderComponentFromString(codeString)
+        if (content) {
+            setCodeContent(content)
+        }
+    }, [codeString])
+
     useEffect(() => {
         setCodeTabs([
             {
@@ -81,33 +88,23 @@ export function useProblem(problemProps: ProblemProps) {
                 )
             }
         ])
+    }, [])
 
+    useEffect(() => {
         setCodeButtons([
             {
                 title: "Run",
-                onClick: () => {
-                    const content = renderComponentFromString(codeString)
-                    if (content) {
-                        setCodeContent(content)
-                    }
-                }
+                onClick: onRun
             }
         ])
-    }, [])
+    }, [onRun])
 
     useEffect(() => {
         setOutputTabs([
             {
                 id: "output",
                 title: "Output",
-                content:  codeContent ? (
-                    <ProblemTab
-                        title='Solution'
-                        description="The expected output from the problem"
-                        key='problem_card_soln'
-                        component={codeContent}
-                    />
-                ) : (<>No Output</>)
+                content:  codeContent ?? (<>No Output</>)
             }
         ])
     }, [codeContent])

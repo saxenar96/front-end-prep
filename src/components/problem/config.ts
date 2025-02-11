@@ -13,8 +13,8 @@ export interface ProblemProps {
 }
 
 export interface TabProps {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
     component?: () => JSX.Element;
 }
 
