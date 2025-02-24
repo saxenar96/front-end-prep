@@ -1,25 +1,30 @@
-import React from 'react';
-import * as Babel from '@babel/standalone';
+'use client'
 
-export function renderComponentFromString(componentString: string) {
+import React, { useState, useEffect, useMemo } from 'react'
+import { transform } from '@babel/standalone'
+
+export function executeCode(codeString: string) {
     try {
-        // Transpile the JSX into plain JavaScript
-        const transpiledCode = Babel.transform(componentString, {
+        // Transpile the code string using Babel
+        const transpiledCode = transform(codeString, {
             presets: ['react'],
-        }).code;
+        })?.code
 
-        // Dynamically create the component
-        const Component = new Function('React', `return ${transpiledCode}`)(React);
-    
-        // Ensure it's a valid React component
-        if (typeof Component !== 'function') {
-            console.error('Invalid component string');
-            return
+        if (!transpiledCode) {
+            throw new Error('Transpiling failed')
         }
-
-        return (<Component />);
-    } catch (e) {
-        console.error('Invalid component string', e);
+        
+        return new Function(
+            'React',
+            'useState',
+            'useEffect',
+            `return ${transpiledCode}`
+        )(
+            React,
+            useState,
+            useEffect,
+        );
+    } catch (error) {
+        console.error('Error transpiling or rendering code:', error);
     }
-    
-}
+  };

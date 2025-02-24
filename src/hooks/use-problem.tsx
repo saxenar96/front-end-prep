@@ -3,9 +3,8 @@ import { defaultCodeSnippet } from "@/components/codeEditor/const";
 import { PanelButtonProps, PanelTabProps } from "@/components/panel/config";
 import { ProblemProps } from "@/components/problem/config";
 import { ProblemTab } from "@/components/problem/problemTab";
-import { renderComponentFromString } from "@/utils/executeCode";
 import { Editor } from "@monaco-editor/react";
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export function useProblem(problemProps: ProblemProps) {
@@ -17,10 +16,8 @@ export function useProblem(problemProps: ProblemProps) {
     const [ codeTabs, setCodeTabs ] = useState<PanelTabProps[]>([])
     const [ outputTabs, setOutputTabs ] = useState<PanelTabProps[]>([])
 
-    const [ codeButtons, setCodeButtons ] = useState<PanelButtonProps[]>([])
-
     const [ codeString, setCodeString ] = useState(localStorage.getItem(localStorageProblemKey) || defaultCodeSnippet)
-    const [ codeContent, setCodeContent ] = useState<ReactElement | null>(null)
+    const [ codeContent, setCodeContent ] = useState<JSX.Element | null>(null)
 
     const [ cssString, setCssString ] = useState(localStorage.getItem(localStorageProblemCSSKey) || '')
     
@@ -49,13 +46,6 @@ export function useProblem(problemProps: ProblemProps) {
             }
         ])
     }, [description, Soln])
-
-    const onRun = useCallback(() => {
-        const content = renderComponentFromString(codeString)
-        if (content) {
-            setCodeContent(content)
-        }
-    }, [codeString])
 
     useEffect(() => {
         setCodeTabs([
@@ -91,15 +81,6 @@ export function useProblem(problemProps: ProblemProps) {
     }, [])
 
     useEffect(() => {
-        setCodeButtons([
-            {
-                title: "Run",
-                onClick: onRun
-            }
-        ])
-    }, [onRun])
-
-    useEffect(() => {
         setOutputTabs([
             {
                 id: "output",
@@ -117,5 +98,5 @@ export function useProblem(problemProps: ProblemProps) {
         saveInLocalStorage(codeString)
     }, [codeString])
 
-    return {problemTabs, codeTabs, outputTabs, codeButtons, codeString, codeContent}
+    return {problemTabs, codeTabs, outputTabs, codeString, codeContent, setCodeContent}
 }

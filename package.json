@@ -10,6 +10,7 @@
     "new-problem": "node scripts/new-problem.js"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.26.0",
     "@babel/standalone": "^7.26.4",
     "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-collapsible": "^1.1.1",
@@ -24,7 +25,6 @@
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "fs": "^0.0.1-security",
     "github-markdown-css": "^5.8.1",
     "lucide-react": "^0.453.0",
     "next": "14.2.15",
@@ -42,6 +42,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "babel-loader": "^9.2.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
