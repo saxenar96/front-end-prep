@@ -7,18 +7,38 @@ import { transform } from '@babel/standalone'
 export function generateUniqueClassName() {
     return `dynamic-component-${Math.random().toString(36).substring(2, 9)}`;
   };
+
+function getStyleInHeadByClassName(className: string) {
+    const styles = document.head.getElementsByTagName('style')
+    for (const s of Array.from(styles)) {
+        if (s.id === className) return s
+    }
+
+    return undefined
+}
   
 // Utility to inject scoped CSS
 export function injectScopedCSS(cssString: string, uniqueClassName: string) {
-    const styleElement = document.createElement('style');
-    styleElement.type = 'text/css';
-    styleElement.innerHTML = cssString
-        .split('}')
-        .map((rule) => rule.trim())
-        .filter((rule) => rule)
-        .map((rule) => `.${uniqueClassName} ${rule}}`)
-        .join(' ');
-    document.head.appendChild(styleElement);
+    const styleElement = getStyleInHeadByClassName(uniqueClassName)
+    if (!styleElement) {
+        const styleElement = document.createElement('style');
+        styleElement.id = uniqueClassName
+        styleElement.type = 'text/css';
+        styleElement.innerHTML = cssString
+            .split('}')
+            .map((rule) => rule.trim())
+            .filter((rule) => rule)
+            .map((rule) => `.${uniqueClassName} ${rule}}`)
+            .join(' ');
+        document.head.appendChild(styleElement);
+    } else {
+        styleElement.innerHTML = cssString
+            .split('}')
+            .map((rule) => rule.trim())
+            .filter((rule) => rule)
+            .map((rule) => `.${uniqueClassName} ${rule}}`)
+            .join(' ');
+    }
 };
 
 export function executeCode(codeString: string, uniqueClassName: string) {
