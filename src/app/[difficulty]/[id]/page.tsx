@@ -47,6 +47,9 @@ export default function ProblemPage({
                         title={problem.title}
                         description={problemDesc}
                         solnComponent={problem.solutionComponent}
+                        problemType={problem.problemType}
+                        difficulty={problem.difficulty}
+                        estimatedCompletionTime={problem.estimatedCompletionTime}
                     />
                 )
             }

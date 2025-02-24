@@ -1,5 +1,3 @@
-# Wordle
-
 Build a clone of Wordle.
 
 ![](https://www.greatfrontend.com/img/questions/wordle/wordle-example.png)

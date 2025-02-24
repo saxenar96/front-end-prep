@@ -1,5 +1,3 @@
-# File Explorer
-
 Given an array of file objects, build a component that displays them in a hierarchical tree format.
 
 There are two types of objects – files and directories:

@@ -1,11 +1,10 @@
-import { CodeEditor } from "@/components/codeEditor";
 import { defaultCodeSnippet } from "@/components/codeEditor/const";
-import { PanelButtonProps, PanelTabProps } from "@/components/panel/config";
+import { PanelTabProps } from "@/components/panel/config";
 import { ProblemProps } from "@/components/problem/config";
 import { ProblemTab } from "@/components/problem/problemTab";
 import { generateUniqueClassName, injectScopedCSS } from "@/utils/executeCode";
 import { Editor } from "@monaco-editor/react";
-import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 const editorOptions = {
@@ -15,7 +14,7 @@ const editorOptions = {
 }
 
 export function useProblem(problemProps: ProblemProps) {
-    const { title, description, solnComponent: Soln } = problemProps
+    const { title, description, solnComponent: Soln, difficulty, estimatedCompletionTime, problemType } = problemProps
     const [localStorageProblemKey] = useState(`${title}_FE_Prep`)
     const [localStorageProblemCSSKey] = useState(`${title}_FE_Prep_CSS`)
 
@@ -43,6 +42,12 @@ export function useProblem(problemProps: ProblemProps) {
             {
                 id: "description",
                 title: "Description",
+                additionalDetails: {
+                    problemTitle: title,
+                    difficulty,
+                    problemType,
+                    estimatedCompletionTime
+                },
                 content:  (
                     <ReactMarkdown className="prose markdown-body">
                         { description }

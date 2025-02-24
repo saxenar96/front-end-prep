@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { PanelProps, PanelTabProps } from "./config";
 import './index.css'
 import { Button } from "../ui/button";
+import { DetailsBar } from "./detailsBar";
 
 function getTabMap(tabs: PanelTabProps[]) {
     const map = new Map()
@@ -44,20 +45,13 @@ export function Panel(props: PanelProps) {
                     value={currentTab}
                     onValueChange={(selectedTab) => setCurrentTab(selectedTab)}
                 >
-                    <TabsList className="mb-[24px]">
+                    <TabsList className="mb-4">
                         {
                             tabTitles.map(tabName => (
                                 <TabsTrigger key={tabName} value={tabName}>{tabName}</TabsTrigger>
                             ))
                         }
                     </TabsList>
-                    {/* {
-                        tabTitles.map((tab: string, index) => (
-                            <TabsContent key={`problem-tab-${index}`} value={tab}>
-                                { tabMap.get(tab)?.content }
-                            </TabsContent>
-                        ))
-                    } */}
                 </Tabs>
                 <div className="actionbar">
                     {
@@ -67,7 +61,23 @@ export function Panel(props: PanelProps) {
                     }
                 </div>
             </div>
-            {tabMap.get(currentTab)?.content}
+            <div className="flex flex-col gap-4 h-full">
+                {
+                    tabMap.get(currentTab)?.additionalDetails?.problemTitle && (
+                        <div className="text-4xl font-bold text-[#1F2328] pb-[1rem] border-solid border-slate-200 border-b-[1px]">
+                            { tabMap.get(currentTab)?.additionalDetails?.problemTitle }
+                        </div>
+                    )
+                }
+                {
+                    tabMap.get(currentTab)?.additionalDetails && (
+                        <DetailsBar
+                            {...tabMap.get(currentTab)?.additionalDetails}
+                        />
+                    )
+                }
+                {tabMap.get(currentTab)?.content}
+            </div>
         </div>
     )
 }

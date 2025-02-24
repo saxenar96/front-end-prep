@@ -1,5 +1,3 @@
-# Accordion
-
 Build an Accordion component that displays a list of vertically stacked sections that each contain a title and content snippet. Some HTML is provided for you as example contents along with a chevron icon.
 
 # Requirements

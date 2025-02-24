@@ -10,7 +10,7 @@ import { PanelButtonProps } from "../panel/config";
 import { useProblem } from "@/hooks/use-problem";
 
 export default function Problem(props: ProblemProps) {
-    const { title, description, solnComponent: Soln } = props
+    const { title, description } = props
     const { codeString, setCodeContent, problemTabs, codeTabs, outputTabs, cssString, runs, setRuns } = useProblem(props)
     const [ codeButtons, setCodeButtons ] = useState<PanelButtonProps[]>([])
 

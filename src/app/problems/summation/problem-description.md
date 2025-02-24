@@ -1,5 +1,3 @@
-# Summation
-
 Build a component that keeps track of a running sum of numbers entered by the user.
 
 The user should be able to see all of the numbers they have entered. In addition, they should also be able to delete the number, by clicking on it, and have the sum be adjusted by subtracting that value.
