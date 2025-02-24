@@ -13,4 +13,5 @@ export interface PanelButtonProps {
 export interface PanelProps {
     tabs: PanelTabProps[]
     actions: PanelButtonProps[]
+    large?: boolean
 }

@@ -56,6 +56,7 @@ export default function Problem(props: ProblemProps) {
             <Panel
                 tabs={codeTabs}
                 actions={codeButtons}
+                large={true}
             />
             <Panel
                 tabs={outputTabs}

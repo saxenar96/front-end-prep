@@ -38,7 +38,7 @@ export function Panel(props: PanelProps) {
     }, [currentTab, tabMap, tabs])
 
     return (
-        <div className='problem-desc rounded-xl border bg-card text-card-foreground shadow'>
+        <div className={['problem-desc rounded-xl border bg-card text-card-foreground shadow', props.large ? 'large-panel' : ''].join(' ')}>
             <div className="toolbar">
                 <Tabs
                     value={currentTab}
@@ -67,9 +67,7 @@ export function Panel(props: PanelProps) {
                     }
                 </div>
             </div>
-            <div>
-                {tabMap.get(currentTab)?.content}
-            </div>
+            {tabMap.get(currentTab)?.content}
         </div>
     )
 }

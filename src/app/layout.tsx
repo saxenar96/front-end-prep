@@ -50,41 +50,41 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
-      <SidebarProvider defaultOpen={false}>
-        <AppSidebar headerProps={headerProps}/>
-        <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-              {
-                pathFragments.map((path, index) => {
-                  return (
-                    <>
-                      <BreadcrumbItem className="hidden md:block">
-                        <BreadcrumbLink href={`/${pathFragments.slice(0, index + 1).join('/')}`}>
-                          { kebabToPascalWithSpaces(path) }
-                        </BreadcrumbLink>
-                      </BreadcrumbItem>
-                      {
-                        index !== pathFragments.length - 1 && (
-                          <BreadcrumbSeparator className="hidden md:block" />
-                        )
-                      }
-                    </>
-                  )
-                })
-              }
-              </BreadcrumbList>
-            </Breadcrumb>
-          </header>
-          <main className=" flex flex-col w-full p-[24px] overflow-hidden h-full">
-            {children}
-          </main>
-      </SidebarInset>
-      </SidebarProvider>
+      <body className="w-full">
+        <SidebarProvider defaultOpen={false}>
+          <AppSidebar headerProps={headerProps}/>
+          <SidebarInset>
+            <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+              <SidebarTrigger />
+              <Separator orientation="vertical" className="mr-2 h-4" />
+              <Breadcrumb>
+                <BreadcrumbList>
+                {
+                  pathFragments.map((path, index) => {
+                    return (
+                      <>
+                        <BreadcrumbItem className="hidden md:block">
+                          <BreadcrumbLink href={`/${pathFragments.slice(0, index + 1).join('/')}`}>
+                            { kebabToPascalWithSpaces(path) }
+                          </BreadcrumbLink>
+                        </BreadcrumbItem>
+                        {
+                          index !== pathFragments.length - 1 && (
+                            <BreadcrumbSeparator className="hidden md:block" />
+                          )
+                        }
+                      </>
+                    )
+                  })
+                }
+                </BreadcrumbList>
+              </Breadcrumb>
+            </header>
+            <main className=" flex flex-col w-full p-4 overflow-hidden h-full">
+              {children}
+            </main>
+        </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );

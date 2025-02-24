@@ -53,9 +53,9 @@ export function useProblem(problemProps: ProblemProps) {
                 id: "user_code",
                 title: "App.jsx",
                 content:  (
-                    <div className='flex flex-col gap-[16px] w-full min-w-[490px]'>
+                    <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
                         <Editor
-                            height="75vh"
+                            height="100%"
                             defaultLanguage="javascript"
                             value={codeString}
                             onChange={(value) => setCodeString(value ?? '')}
@@ -67,9 +67,9 @@ export function useProblem(problemProps: ProblemProps) {
                 id: "user_css",
                 title: "index.css",
                 content:  (
-                    <div className='flex flex-col gap-[16px] w-full min-w-[490px]'>
+                    <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
                         <Editor
-                            height="75vh"
+                            height="100%"
                             defaultLanguage="css"
                             value={cssString}
                             onChange={(value) => setCssString(value ?? '')}
