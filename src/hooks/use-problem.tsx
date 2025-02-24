@@ -8,6 +8,12 @@ import { Editor } from "@monaco-editor/react";
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
+const editorOptions = {
+    minimap: {
+        enabled: false
+    }
+}
+
 export function useProblem(problemProps: ProblemProps) {
     const { title, description, solnComponent: Soln } = problemProps
     const [localStorageProblemKey] = useState(`${title}_FE_Prep`)
@@ -70,6 +76,7 @@ export function useProblem(problemProps: ProblemProps) {
                             language="javascript"
                             value={codeString}
                             onChange={(value) => setCodeString(value ?? '')}
+                            options={editorOptions}
                         />
                     </div>
                 )
@@ -84,6 +91,7 @@ export function useProblem(problemProps: ProblemProps) {
                             language="css"
                             value={cssString}
                             onChange={(value) => setCssString(value ?? '')}
+                            options={editorOptions}
                         />
                     </div>
                 )
