@@ -3,7 +3,25 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { transform } from '@babel/standalone'
 
-export function executeCode(codeString: string) {
+// Utility to generate a unique class name
+export function generateUniqueClassName() {
+    return `dynamic-component-${Math.random().toString(36).substring(2, 9)}`;
+  };
+  
+// Utility to inject scoped CSS
+export function injectScopedCSS(cssString: string, uniqueClassName: string) {
+    const styleElement = document.createElement('style');
+    styleElement.type = 'text/css';
+    styleElement.innerHTML = cssString
+        .split('}')
+        .map((rule) => rule.trim())
+        .filter((rule) => rule)
+        .map((rule) => `.${uniqueClassName} ${rule}}`)
+        .join(' ');
+    document.head.appendChild(styleElement);
+};
+
+export function executeCode(codeString: string, uniqueClassName: string) {
     try {
         // Transpile the code string using Babel
         const transpiledCode = transform(codeString, {
@@ -16,11 +34,13 @@ export function executeCode(codeString: string) {
         
         return new Function(
             'React',
+            'uniqueClassName',
             'useState',
             'useEffect',
             `return ${transpiledCode}`
         )(
             React,
+            uniqueClassName,
             useState,
             useEffect,
         );

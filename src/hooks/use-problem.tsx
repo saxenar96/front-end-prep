@@ -3,8 +3,9 @@ import { defaultCodeSnippet } from "@/components/codeEditor/const";
 import { PanelButtonProps, PanelTabProps } from "@/components/panel/config";
 import { ProblemProps } from "@/components/problem/config";
 import { ProblemTab } from "@/components/problem/problemTab";
+import { generateUniqueClassName, injectScopedCSS } from "@/utils/executeCode";
 import { Editor } from "@monaco-editor/react";
-import React, { ReactElement, useCallback, useEffect, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 export function useProblem(problemProps: ProblemProps) {
@@ -21,6 +22,16 @@ export function useProblem(problemProps: ProblemProps) {
 
     const [ cssString, setCssString ] = useState(localStorage.getItem(localStorageProblemCSSKey) || '')
     
+    const [ runs, setRuns ] = useState(0)
+
+    // Generate a unique class name for the dynamic component
+    const uniqueClassName = useMemo(() => generateUniqueClassName(), []);
+
+    // Inject scoped CSS into the document
+    useEffect(() => {
+        injectScopedCSS(cssString, uniqueClassName);
+    }, [runs, uniqueClassName]);
+
     useEffect(() => {
         setProblemTabs([
             {
@@ -85,7 +96,7 @@ export function useProblem(problemProps: ProblemProps) {
             {
                 id: "output",
                 title: "Output",
-                content:  codeContent ?? (<>No Output</>)
+                content:  codeContent ? (<div className={uniqueClassName}>{codeContent}</div>) : (<>No Output</>)
             }
         ])
     }, [codeContent])
@@ -98,5 +109,5 @@ export function useProblem(problemProps: ProblemProps) {
         saveInLocalStorage(codeString)
     }, [codeString])
 
-    return {problemTabs, codeTabs, outputTabs, codeString, codeContent, setCodeContent}
+    return {problemTabs, codeTabs, outputTabs, codeString, codeContent, setCodeContent, cssString, runs, setRuns}
 }
