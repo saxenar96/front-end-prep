@@ -67,7 +67,7 @@ export function useProblem(problemProps: ProblemProps) {
                     <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
                         <Editor
                             height="100%"
-                            defaultLanguage="javascript"
+                            language="javascript"
                             value={codeString}
                             onChange={(value) => setCodeString(value ?? '')}
                         />
@@ -81,7 +81,7 @@ export function useProblem(problemProps: ProblemProps) {
                     <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
                         <Editor
                             height="100%"
-                            defaultLanguage="css"
+                            language="css"
                             value={cssString}
                             onChange={(value) => setCssString(value ?? '')}
                         />
