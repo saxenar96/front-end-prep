@@ -1,8 +1,9 @@
 .problem {
-    @apply flex w-full gap-[16px] h-full;
-
+    @apply flex w-full gap-2 h-full;
+    
     .problem-desc {
-        @apply w-full flex flex-col min-w-[300px] p-[1.25rem] gap-2 overflow-scroll;
+        scrollbar-color: #c1c1c1 transparent;
+        @apply w-full flex flex-col min-w-[300px] p-[1.25rem] gap-2 overflow-auto;
     }
     
     h1 {
