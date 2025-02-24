@@ -18,9 +18,16 @@ export interface ProblemInfo {
     title: string;
     difficulty: PROBLEM_DIFFICULTY;
     solutionComponent: () => JSX.Element;
+    problemType: PROBLEM_TYPES;
+    estimatedCompletionTime?: number; // Number in minutes
     icon?: any;
 }
 
 export interface ProblemEntry extends ProblemInfo {
     url: string
+}
+
+export enum PROBLEM_TYPES {
+    Javascirpt,
+    React
 }

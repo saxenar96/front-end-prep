@@ -1,4 +1,4 @@
-import { PROBLEM_DIFFICULTY, ProblemEntry, ProblemInfo } from "@/types/problem";
+import { PROBLEM_DIFFICULTY, PROBLEM_TYPES, ProblemEntry, ProblemInfo } from "@/types/problem";
 import SummationSoln from '@/app/problems/summation/soln'
 import CounterSoln from '@/app/problems/counter/soln'
 import WordleSoln from '@/app/problems/wordle/soln'
@@ -16,56 +16,72 @@ const problems: ProblemInfo[] = [
         title: 'Summation',
         difficulty: PROBLEM_DIFFICULTY.Easy,
         solutionComponent: SummationSoln,
-        icon: SquareSigma
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 10,
+        icon: SquareSigma,
     },
     {
         id: 'counter',
         title: 'Counter',
         difficulty: PROBLEM_DIFFICULTY.Easy,
         solutionComponent: CounterSoln,
-        icon: Plus
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 5,
+        icon: Plus,
     },
     {
         id: 'wordle',
         title: 'Wordle',
         difficulty: PROBLEM_DIFFICULTY.Hard,
         solutionComponent: WordleSoln,
-        icon: WholeWord
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 45,
+        icon: WholeWord,
     },
     {
         id: 'transfer-list',
         title: 'Transfer List',
         difficulty: PROBLEM_DIFFICULTY.Medium,
         solutionComponent: TransferListSoln,
-        icon: FolderSync
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 30,
+        icon: FolderSync,
     },
     {
         id: 'traffic-light',
         title: 'Traffic Light',
         difficulty: PROBLEM_DIFFICULTY.Medium,
         solutionComponent: TrafficLightSoln,
-        icon: OctagonMinus
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 20,
+        icon: OctagonMinus,
     },
     {
         id: 'image-carousel',
         title: 'Image Carousel',
         difficulty: PROBLEM_DIFFICULTY.Medium,
         solutionComponent: ImageCarouselSoln,
-        icon: Images
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 20,
+        icon: Images,
     },
     {
         id: 'file-explorer',
         title: 'File Explorer',
         difficulty: PROBLEM_DIFFICULTY.Medium,
         solutionComponent: FileExplorerSoln,
-        icon: FolderOpen
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 20,
+        icon: FolderOpen,
     },
     {
         id: 'accordion',
         title: 'Accordion',
         difficulty: PROBLEM_DIFFICULTY.Easy,
         solutionComponent: AccordionSoln,
-        icon: ListCollapse
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 15,
+        icon: ListCollapse,
     },
 ]
 
