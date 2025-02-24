@@ -2,7 +2,7 @@
     @apply flex w-full gap-[16px] h-full;
 
     .problem-desc {
-        @apply w-full flex flex-col min-w-[300px] p-[1.25rem] gap-2;
+        @apply w-full flex flex-col min-w-[300px] p-[1.25rem] gap-2 overflow-scroll;
     }
     
     h1 {
@@ -36,7 +36,7 @@
         display: flex;
         justify-content: space-between;
     }
-    
+
     .large-panel {
         @apply w-full min-w-[550px];
     }

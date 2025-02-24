@@ -50,10 +50,10 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="w-full">
+      <body className="w-full h-[100vh] overflow-hidden">
         <SidebarProvider defaultOpen={false}>
           <AppSidebar headerProps={headerProps}/>
-          <SidebarInset>
+          <SidebarInset className="content">
             <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
               <SidebarTrigger />
               <Separator orientation="vertical" className="mr-2 h-4" />
@@ -80,7 +80,7 @@ export default function RootLayout({
                 </BreadcrumbList>
               </Breadcrumb>
             </header>
-            <main className=" flex flex-col w-full p-4 overflow-hidden h-full">
+            <main className=" flex flex-1 flex-col w-full p-4 overflow-auto">
               {children}
             </main>
         </SidebarInset>
