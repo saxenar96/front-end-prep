@@ -22,8 +22,7 @@ import { useEffect, useState } from "react"
 
 export interface SidebarHeaderSelectionProps {
   text: string;
-  // tslint:disable-next-line
-  value: any;
+  value: any; // tslint:disable-next-line
   iconName: string;
 }
 export interface SidebarHeaderProps {
@@ -38,8 +37,7 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
   const currPath = usePathname()
   const [currentHeaderSelectionIndex, setCurrentHeaderSelectionIndex] = useState(defaultSelection)
   const [currentSelection, setCurrentSelection] = useState(options[currentHeaderSelectionIndex])
-  // tslint:disable-next-line
-  const [currentIcon, setCurrentIcon] = useState<any>(<Globe size={16} />)
+  const [currentIcon, setCurrentIcon] = useState<any>(<Globe size={16} />) // tslint:disable-next-line
 
   useEffect(() => {
     setCurrentSelection(options[currentHeaderSelectionIndex])
