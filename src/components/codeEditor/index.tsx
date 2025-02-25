@@ -1,38 +1,36 @@
-import { useState } from "react"
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { useEffect, useState } from "react"
 import { CodeEditorProps } from './config'
 import { Editor } from "@monaco-editor/react"
-import { Button } from "../ui/button"
+
+const editorOptions = {
+  minimap: {
+      enabled: false
+  }
+}
 
 export function CodeEditor(props: CodeEditorProps) {
-  const { onDevCodeChange, defaultCode } = props
+  const { onDevCodeChange, defaultCode, language, localStorageKey } = props
+  const [code, setCode] = useState(localStorage.getItem(localStorageKey) || defaultCode)
 
-  const [code, setCode] = useState(defaultCode)
-
-  const handleRunCode = () => {
+  useEffect(() => {
+    console.log('From Local Storage', language, code)
     onDevCodeChange(code)
-  }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, code)
+    onDevCodeChange(code)
+  }, [code])
 
   return (
-    <Card className="w-full h-full">
-        <CardHeader>
-            <div className="w-full flex justify-between items-center">
-                <CardTitle className="inline-flex gap-2">
-                    <span>Your Code</span>
-                </CardTitle>
-                <Button onClick={handleRunCode}>Run</Button>
-            </div>
-        </CardHeader>
-        <Editor
-            height="75vh"
-            defaultLanguage="javascript"
-            value={code}
-            onChange={(value) => setCode(value ?? '')}
-        />
-    </Card>
+    <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
+      <Editor
+        height="100%"
+        language={language}
+        value={code}
+        onChange={(value) => setCode(value ?? '')}
+        options={editorOptions}
+      />
+    </div>
   )
 }

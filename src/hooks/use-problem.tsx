@@ -1,3 +1,5 @@
+import { CodeEditor } from "@/components/codeEditor";
+import { CodeEditorLanguages } from "@/components/codeEditor/config";
 import { defaultCodeSnippet } from "@/components/codeEditor/const";
 import { PanelTabProps } from "@/components/panel/config";
 import { ProblemProps } from "@/components/problem/config";
@@ -16,17 +18,15 @@ const editorOptions = {
 
 export function useProblem(problemProps: ProblemProps) {
     const { title, description, solnComponent: Soln, difficulty, estimatedCompletionTime, problemType } = problemProps
-    const [localStorageProblemKey] = useState(`${title}_FE_Prep`)
-    const [localStorageProblemCSSKey] = useState(`${title}_FE_Prep_CSS`)
 
     const [ problemTabs, setProblemTabs ] = useState<PanelTabProps[]>([])
     const [ codeTabs, setCodeTabs ] = useState<PanelTabProps[]>([])
     const [ outputTabs, setOutputTabs ] = useState<PanelTabProps[]>([])
 
-    const [ codeString, setCodeString ] = useState(localStorage.getItem(localStorageProblemKey) || defaultCodeSnippet)
+    const [ codeString, setCodeString ] = useState('')
     const [ codeContent, setCodeContent ] = useState<JSX.Element | null>(null)
 
-    const [ cssString, setCssString ] = useState(localStorage.getItem(localStorageProblemCSSKey) || '')
+    const [ cssString, setCssString ] = useState('')
     
     const [ runs, setRuns ] = useState(0)
 
@@ -79,30 +79,24 @@ export function useProblem(problemProps: ProblemProps) {
                 id: "user_code",
                 title: "App.jsx",
                 content:  (
-                    <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
-                        <Editor
-                            height="100%"
-                            language="javascript"
-                            value={codeString}
-                            onChange={(value) => setCodeString(value ?? '')}
-                            options={editorOptions}
-                        />
-                    </div>
+                    <CodeEditor
+                        defaultCode={defaultCodeSnippet}
+                        language={CodeEditorLanguages.JS}
+                        onDevCodeChange={(val) => setCodeString(val)}
+                        localStorageKey={`${title}_FE_Prep`}
+                    />
                 )
             },
             {
                 id: "user_css",
                 title: "index.css",
                 content:  (
-                    <div className='flex flex-col gap-[16px] w-full min-w-[490px] h-full'>
-                        <Editor
-                            height="100%"
-                            language="css"
-                            value={cssString}
-                            onChange={(value) => setCssString(value ?? '')}
-                            options={editorOptions}
-                        />
-                    </div>
+                    <CodeEditor
+                        defaultCode={''}
+                        language={CodeEditorLanguages.CSS}
+                        onDevCodeChange={(val) => setCssString(val)}
+                        localStorageKey={`${title}_FE_Prep_CSS`}
+                    />
                 )
             }
         ])
@@ -117,14 +111,6 @@ export function useProblem(problemProps: ProblemProps) {
             }
         ])
     }, [codeContent])
-
-    const saveInLocalStorage = (codeVal: string) => {
-        localStorage.setItem(localStorageProblemKey, codeVal)
-    }
-
-    useEffect(() => {
-        saveInLocalStorage(codeString)
-    }, [codeString])
 
     return {problemTabs, codeTabs, outputTabs, codeString, codeContent, setCodeContent, cssString, runs, setRuns}
 }
