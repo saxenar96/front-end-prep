@@ -6,6 +6,7 @@ import { generateUniqueClassName, injectScopedCSS } from "@/utils/executeCode";
 import { Editor } from "@monaco-editor/react";
 import React, { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const editorOptions = {
     minimap: {
@@ -49,7 +50,10 @@ export function useProblem(problemProps: ProblemProps) {
                     estimatedCompletionTime
                 },
                 content:  (
-                    <ReactMarkdown className="prose markdown-body">
+                    <ReactMarkdown
+                        className="prose markdown-body"
+                        remarkPlugins={[remarkGfm]}                
+                    >
                         { description }
                     </ReactMarkdown>
                 )
