@@ -1,5 +1,5 @@
 'use client'
-import { ChevronsUpDown, ChevronDown, Code, Atom} from "lucide-react"
+import { ChevronsUpDown, ChevronDown, Code, Atom, Globe} from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -19,26 +19,35 @@ import '../styles/app-sidebar.css'
 import { getProblemsByDifficulty } from "@/const/problems"
 import { DIFFICULTY_TITLES, difficultyList } from "@/types/problem"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export interface SidebarHeaderProps {
   selectionSet: {
-    options: {value: string, icon: string}[],
+    options: {value: string, icon: any}[],
     default: number
   }
-}
-
-const icons = {
-  'code': Code,
-  'js': (<div>JS</div>),
-  'react': Atom
 }
 
 export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
   const { options, default: defaultSelection } = props.headerProps.selectionSet
   const currPath = usePathname()
-  const [currentHeaderSelection, setCurrentHeaderSelection] = useState(defaultSelection)
-  const [currentSelectionIcon, setCurrentSelectionIcon] = useState<JSX.Element>(icons['code'])
+  const [currentHeaderSelectionIndex, setCurrentHeaderSelectionIndex] = useState(defaultSelection)
+  const [currentSelection, setCurrentSelection] = useState(options[currentHeaderSelectionIndex])
+  const [currentIcon, setCurrentIcon] = useState<any>(<Globe size={16} />)
+
+  useEffect(() => {
+    setCurrentSelection(options[currentHeaderSelectionIndex])
+  }, [currentHeaderSelectionIndex])
+
+  useEffect(() => {
+    if (currentSelection.icon === 'Globe') {
+      setCurrentIcon(<Globe size={16} />)
+    } else if (currentSelection.icon === 'Code') {
+      setCurrentIcon(<Code size={16} />)
+    } else if (currentSelection.icon === 'Atom') {
+      setCurrentIcon(<Atom size={16} />)
+    }
+  }, [currentSelection])
 
   return (
     <Sidebar variant="inset">
@@ -48,16 +57,17 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton variant={'outline'} className="h-fit">
                 <div className="flex aspect-square size-7 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  {currentIcon}
                 </div>
-                { options[currentHeaderSelection].value }
+                { currentSelection.value }
                 <ChevronsUpDown className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[--radix-popper-anchor-width]" side="right" align="start">
               {
                 options.map((item, index) => (
-                  <DropdownMenuItem key={`header-select-${index}`} onSelect={() => setCurrentHeaderSelection(index)}>
-                    <span>{item}</span>
+                  <DropdownMenuItem key={`header-select-${index}`} onSelect={() => setCurrentHeaderSelectionIndex(index)}>
+                    <span>{item.value}</span>
                   </DropdownMenuItem>
                 ))
               }

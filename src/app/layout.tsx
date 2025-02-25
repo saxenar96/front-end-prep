@@ -7,7 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import { headers } from "next/headers";
 import { kebabToPascalWithSpaces } from "@/utils/cases";
 import React, { useState } from "react";
-import { Code } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Web Arena",
@@ -17,15 +16,15 @@ export const metadata: Metadata = {
 export const problemSetOptions = [
   {
     value: 'All Problems',
-    icon: 'code'
+    icon: 'Globe'
   },
   {
     value: 'JavaScript',
-    icon: 'js'
+    icon: 'Code'
   },
   {
     value: 'React',
-    icon: 'react'
+    icon: 'Atom'
   }
 ]
 
