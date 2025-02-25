@@ -20,9 +20,9 @@ import { DIFFICULTY_TITLES, difficultyList, PROBLEM_TYPES } from "@/types/proble
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { useEffect, useState } from "react"
 
-/* tslint:disable:no-explicit-any */
 export interface SidebarHeaderSelectionProps {
   text: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   iconName: string;
 }
@@ -38,6 +38,7 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
   const currPath = usePathname()
   const [currentHeaderSelectionIndex, setCurrentHeaderSelectionIndex] = useState(defaultSelection)
   const [currentSelection, setCurrentSelection] = useState(options[currentHeaderSelectionIndex])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [currentIcon, setCurrentIcon] = useState<any>(<Globe size={16} />)
 
   useEffect(() => {
