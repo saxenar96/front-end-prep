@@ -11,24 +11,24 @@ import { Plus, SquareSigma, ListCollapse, WholeWord, FolderSync, FolderOpen, Ima
 import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
-    {
-        id: 'summation',
-        title: 'Summation',
-        difficulty: PROBLEM_DIFFICULTY.Easy,
-        solutionComponent: SummationSoln,
-        problemType: PROBLEM_TYPES.React,
-        estimatedCompletionTime: 10,
-        icon: SquareSigma,
-    },
-    {
-        id: 'counter',
-        title: 'Counter',
-        difficulty: PROBLEM_DIFFICULTY.Easy,
-        solutionComponent: CounterSoln,
-        problemType: PROBLEM_TYPES.React,
-        estimatedCompletionTime: 5,
-        icon: Plus,
-    },
+    // {
+    //     id: 'summation',
+    //     title: 'Summation',
+    //     difficulty: PROBLEM_DIFFICULTY.Easy,
+    //     solutionComponent: SummationSoln,
+    //     problemType: PROBLEM_TYPES.React,
+    //     estimatedCompletionTime: 10,
+    //     icon: SquareSigma,
+    // },
+    // {
+    //     id: 'counter',
+    //     title: 'Counter',
+    //     difficulty: PROBLEM_DIFFICULTY.Easy,
+    //     solutionComponent: CounterSoln,
+    //     problemType: PROBLEM_TYPES.React,
+    //     estimatedCompletionTime: 5,
+    //     icon: Plus,
+    // },
     {
         id: 'wordle',
         title: 'Wordle',
