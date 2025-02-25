@@ -11,7 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
-  useSidebar,
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible"
 import { usePathname } from "next/navigation"
@@ -23,6 +22,7 @@ import { useEffect, useState } from "react"
 
 export interface SidebarHeaderSelectionProps {
   text: string;
+  // tslint:disable-next-line
   value: any;
   iconName: string;
 }
@@ -38,6 +38,7 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
   const currPath = usePathname()
   const [currentHeaderSelectionIndex, setCurrentHeaderSelectionIndex] = useState(defaultSelection)
   const [currentSelection, setCurrentSelection] = useState(options[currentHeaderSelectionIndex])
+  // tslint:disable-next-line
   const [currentIcon, setCurrentIcon] = useState<any>(<Globe size={16} />)
 
   useEffect(() => {

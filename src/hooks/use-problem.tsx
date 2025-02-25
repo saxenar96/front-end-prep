@@ -5,16 +5,9 @@ import { PanelTabProps } from "@/components/panel/config";
 import { ProblemProps } from "@/components/problem/config";
 import { ProblemTab } from "@/components/problem/problemTab";
 import { generateUniqueClassName, injectScopedCSS } from "@/utils/executeCode";
-import { Editor } from "@monaco-editor/react";
 import React, { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
-const editorOptions = {
-    minimap: {
-        enabled: false
-    }
-}
 
 export function useProblem(problemProps: ProblemProps) {
     const { title, description, solnComponent: Soln, difficulty, estimatedCompletionTime, problemType } = problemProps

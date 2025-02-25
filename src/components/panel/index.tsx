@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, act } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
 import { PanelProps, PanelTabProps } from "./config";
 import './index.css'
@@ -20,7 +20,6 @@ export function Panel(props: PanelProps) {
     const [ tabMap, setTabMap ] = useState<Map<string, PanelTabProps>>(getTabMap(tabs))
     const [ tabTitles, setTabTitles ] = useState<string[]>([])
     const [ currentTab, setCurrentTab ] = useState(tabTitles[0])
-    const [ currentTabData, setCurrentTabData ] = useState<JSX.Element>(tabs[0]?.content)
 
     useEffect(() => {
         setTabMap(getTabMap(tabs))
@@ -33,10 +32,6 @@ export function Panel(props: PanelProps) {
     useEffect(() => {
         setCurrentTab(tabTitles[0])
     }, [tabTitles])
-
-    useEffect(() => {
-        setCurrentTabData(tabMap.get(currentTab)?.content ?? tabs[0]?.content)
-    }, [currentTab, tabMap, tabs])
 
     return (
         <div className={['problem-desc rounded-xl border bg-card text-card-foreground shadow', props.large ? 'large-panel' : ''].join(' ')}>
@@ -55,17 +50,17 @@ export function Panel(props: PanelProps) {
                     </TabsList>
                     <div className="actionbar">
                         {
-                            actions.map(action => (
-                                <Button onClick={action.onClick}>{action.title}</Button>
+                            actions.map((action, index) => (
+                                <Button key={`action-button-${index}`} onClick={action.onClick}>{action.title}</Button>
                             ))
                         }
                     </div>
                 </div>
                 <div className="h-full w-full">
                     {
-                        tabTitles.map(tabName => {
+                        tabTitles.map((tabName, index) => {
                             return (
-                                <TabsContent className="h-full" value={tabName}>
+                                <TabsContent key={`tabContent-${index}`} className="h-full" value={tabName}>
                                     <div className="flex flex-col gap-4 h-full">
                                         {
                                             tabMap.get(currentTab)?.additionalDetails?.problemTitle && (
