@@ -28,6 +28,7 @@ export interface ProblemEntry extends ProblemInfo {
 }
 
 export enum PROBLEM_TYPES {
+    All = 'All',
     Javascript = 'Javascript',
     React = 'React'
 }

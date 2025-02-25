@@ -1,30 +1,34 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar, SidebarHeaderSelectionProps } from "@/components/app-sidebar";
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { headers } from "next/headers";
 import { kebabToPascalWithSpaces } from "@/utils/cases";
 import React, { useState } from "react";
+import { PROBLEM_TYPES } from "@/types/problem";
 
 export const metadata: Metadata = {
   title: "Web Arena",
   description: "App to practice problems for Front End interviews",
 };
 
-export const problemSetOptions = [
+export const problemSetOptions: SidebarHeaderSelectionProps[] = [
   {
-    value: 'All Problems',
-    icon: 'Globe'
+    text: 'All Problems',
+    value: PROBLEM_TYPES.All,
+    iconName: 'Globe'
   },
   {
-    value: 'JavaScript',
-    icon: 'Code'
+    text: 'JavaScript',
+    value: PROBLEM_TYPES.Javascript,
+    iconName: 'Code'
   },
   {
-    value: 'React',
-    icon: 'Atom'
+    text: 'React',
+    value: PROBLEM_TYPES.React,
+    iconName: 'Atom'
   }
 ]
 

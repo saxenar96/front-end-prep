@@ -17,13 +17,18 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/r
 import { usePathname } from "next/navigation"
 import '../styles/app-sidebar.css'
 import { getProblemsByDifficulty } from "@/const/problems"
-import { DIFFICULTY_TITLES, difficultyList } from "@/types/problem"
+import { DIFFICULTY_TITLES, difficultyList, PROBLEM_TYPES } from "@/types/problem"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { useEffect, useState } from "react"
 
+export interface SidebarHeaderSelectionProps {
+  text: string;
+  value: any;
+  iconName: string;
+}
 export interface SidebarHeaderProps {
   selectionSet: {
-    options: {value: string, icon: any}[],
+    options: SidebarHeaderSelectionProps[],
     default: number
   }
 }
@@ -40,11 +45,11 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
   }, [currentHeaderSelectionIndex])
 
   useEffect(() => {
-    if (currentSelection.icon === 'Globe') {
+    if (currentSelection.iconName === 'Globe') {
       setCurrentIcon(<Globe size={16} />)
-    } else if (currentSelection.icon === 'Code') {
+    } else if (currentSelection.iconName === 'Code') {
       setCurrentIcon(<Code size={16} />)
-    } else if (currentSelection.icon === 'Atom') {
+    } else if (currentSelection.iconName === 'Atom') {
       setCurrentIcon(<Atom size={16} />)
     }
   }, [currentSelection])
@@ -59,7 +64,7 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
                 <div className="flex aspect-square size-7 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   {currentIcon}
                 </div>
-                { currentSelection.value }
+                { currentSelection.text }
                 <ChevronsUpDown className="ml-auto" />
               </SidebarMenuButton>
             </DropdownMenuTrigger>
@@ -67,7 +72,7 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
               {
                 options.map((item, index) => (
                   <DropdownMenuItem key={`header-select-${index}`} onSelect={() => setCurrentHeaderSelectionIndex(index)}>
-                    <span>{item.value}</span>
+                    <span>{item.text}</span>
                   </DropdownMenuItem>
                 ))
               }
@@ -92,21 +97,31 @@ export function AppSidebar(props: { headerProps: SidebarHeaderProps }) {
                 <CollapsibleContent>
                   <SidebarGroupContent>
                     <SidebarMenu>
-                      {getProblemsByDifficulty(diff).map((item) => (
-                        <SidebarMenuItem
-                          key={item.title}
-                        >
-                          <SidebarMenuButton
-                            className={item.url === currPath ? 'curr-path' : ''}
-                            asChild
+                      {
+                        getProblemsByDifficulty(diff)
+                        .filter((p) => {
+                          if (currentSelection.value === PROBLEM_TYPES.All) {
+                            return true
+                          } else {
+                            return p.problemType === currentSelection.value
+                          }
+                        })
+                        .map((item) => (
+                          <SidebarMenuItem
+                            key={item.title}
                           >
-                            <a href={item.url}>
-                              <item.icon />
-                              <span>{item.title}</span>
-                            </a>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
-                      ))}
+                            <SidebarMenuButton
+                              className={item.url === currPath ? 'curr-path' : ''}
+                              asChild
+                            >
+                              <a href={item.url}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                              </a>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        ))
+                      }
                     </SidebarMenu>
                   </SidebarGroupContent>
                 </CollapsibleContent>
