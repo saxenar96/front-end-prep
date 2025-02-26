@@ -213,7 +213,7 @@ const Sidebar = React.forwardRef<
       )
     }
 
-    const handleContainerClick = (e: Event) => {
+    const handleContainerClick = (e: React.MouseEvent) => {
       const { target } = e
       if (target === document.getElementById('sidebar-space')) {
         toggleSidebar()
