@@ -1,34 +1,33 @@
 import { PROBLEM_DIFFICULTY, PROBLEM_TYPES, ProblemEntry, ProblemInfo } from "@/types/problem";
-// import SummationSoln from '@/app/problems/summation/soln'
-// import CounterSoln from '@/app/problems/counter/soln'
+import { SummationSoln, CounterSoln } from "@/app/problems"; 
 import WordleSoln from '@/app/problems/wordle/soln'
 import TransferListSoln from '@/app/problems/transfer-list/soln'
 import TrafficLightSoln from '@/app/problems/traffic-light/soln'
 import ImageCarouselSoln from '@/app/problems/image-carousel/soln'
 import FileExplorerSoln from '@/app/problems/file-explorer/soln'
 import AccordionSoln from '@/app/problems/accordion/soln'
-import { ListCollapse, WholeWord, FolderSync, FolderOpen, Images, OctagonMinus } from "lucide-react";
+import { ListCollapse, WholeWord, FolderSync, FolderOpen, Images, OctagonMinus, SquareSigma, Plus } from "lucide-react";
 import { toKebabCase } from "@/utils/cases";
 
 const problems: ProblemInfo[] = [
-    // {
-    //     id: 'summation',
-    //     title: 'Summation',
-    //     difficulty: PROBLEM_DIFFICULTY.Easy,
-    //     solutionComponent: SummationSoln,
-    //     problemType: PROBLEM_TYPES.React,
-    //     estimatedCompletionTime: 10,
-    //     icon: SquareSigma,
-    // },
-    // {
-    //     id: 'counter',
-    //     title: 'Counter',
-    //     difficulty: PROBLEM_DIFFICULTY.Easy,
-    //     solutionComponent: CounterSoln,
-    //     problemType: PROBLEM_TYPES.React,
-    //     estimatedCompletionTime: 5,
-    //     icon: Plus,
-    // },
+    {
+        id: 'summation',
+        title: 'Summation',
+        difficulty: PROBLEM_DIFFICULTY.Easy,
+        solutionComponent: SummationSoln,
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 10,
+        icon: SquareSigma,
+    },
+    {
+        id: 'counter',
+        title: 'Counter',
+        difficulty: PROBLEM_DIFFICULTY.Easy,
+        solutionComponent: CounterSoln,
+        problemType: PROBLEM_TYPES.React,
+        estimatedCompletionTime: 5,
+        icon: Plus,
+    },
     {
         id: 'wordle',
         title: 'Wordle',
