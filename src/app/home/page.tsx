@@ -5,6 +5,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { BicepsFlexed, CircleDollarSign, Earth, Info } from "lucide-react";
 import Link from "next/link";
+import './index.css'
 
 export default function HomePage() {
     const cardData = [
@@ -36,7 +37,7 @@ export default function HomePage() {
                     <div className="w-full grid grid-cols-3 gap-4">
                         {
                             cardData.map((entry, index) => (
-                                <Card key={`homepage-card-${index}`} className="text-gray-700">
+                                <Card key={`homepage-card-${index}`} className="homepage-card text-gray-700">
                                     <CardTitle>
                                         <div className="flex gap-3 items-center px-6 pt-6 text-xl">
                                             <entry.icon />

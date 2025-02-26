@@ -1,0 +1,9 @@
+.homepage-card {
+    background-color: transparent;
+    color: #18181b;
+    transition: all 150ms;
+}
+.homepage-card:hover {
+    background-color: #18181b;
+    color: white;
+}

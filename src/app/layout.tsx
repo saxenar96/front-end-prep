@@ -83,7 +83,7 @@ export default function RootLayout({
                 </BreadcrumbList>
               </Breadcrumb>
             </header>
-            <main className=" flex flex-1 flex-col w-full p-2 overflow-auto">
+            <main className="primary flex flex-1 flex-col w-full p-2 overflow-auto">
               {children}
             </main>
         </SidebarInset>
