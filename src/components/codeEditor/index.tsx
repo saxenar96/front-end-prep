@@ -13,7 +13,6 @@ export function CodeEditor(props: CodeEditorProps) {
   const [code, setCode] = useState(localStorage.getItem(localStorageKey) || defaultCode)
 
   useEffect(() => {
-    console.log('From Local Storage', language, code)
     onDevCodeChange(code)
   }, [])
 
