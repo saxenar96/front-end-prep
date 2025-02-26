@@ -30,7 +30,7 @@ export default function HomePage() {
             <div className="w-[50%] flex flex-col justify-center items-center gap-10">
                 <div className="w-full flex flex-col justify-center items-start gap-6">
                     <h1 className="font-bold text-6xl">Welcome to WebArena</h1>
-                    <h1 className="font-medium text-base w-full">WebArena is your go-to platform for acing Front End interviews! Whether you're preparing for React or JavaScript-focused interviews, we've got you covered with a curated collection of practice problems designed to sharpen your skills and boost your confidence.</h1>
+                    <h1 className="font-medium text-base w-full">{`WebArena is your go-to platform for acing Front End interviews! Whether you're preparing for React or JavaScript-focused interviews, we've got you covered with a curated collection of practice problems designed to sharpen your skills and boost your confidence.`}</h1>
                 </div>
                 <div>
                     <h2 className="text-4xl font-bold mb-6">Why Choose Us?</h2>
