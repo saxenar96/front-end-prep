@@ -176,7 +176,7 @@ const Sidebar = React.forwardRef<
     },
     ref
   ) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+    const { isMobile, state, openMobile, setOpenMobile, toggleSidebar } = useSidebar()
 
     if (collapsible === "none") {
       return (
@@ -213,14 +213,23 @@ const Sidebar = React.forwardRef<
       )
     }
 
+    const handleContainerClick = (e: Event) => {
+      const { target } = e
+      if (target === document.getElementById('sidebar-space')) {
+        toggleSidebar()
+      }
+    }
+
     return (
       <div
+        id='sidebar-space'
         ref={ref}
         className={`absolute group peer bg-overlay z-[1] hidden md:block transition duration-500 delay-200 ${state === 'expanded' ? 'w-full' : 'w-0'} backdrop-blur`}
         data-state={state}
         data-collapsible={state === "collapsed" ? collapsible : ""}
         data-variant={variant}
         data-side={side}
+        onClick={(e) => handleContainerClick(e)}
       >
         {/* This is what handles the sidebar gap on desktop */}
         <div
