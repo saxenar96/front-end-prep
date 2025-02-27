@@ -1,0 +1,11 @@
+.easy {
+    @apply text-green-600 border-green-600;
+}
+
+.medium {
+    @apply text-orange-600 border-orange-600;
+}
+
+.hard {
+    @apply text-red-600 border-red-600;
+}

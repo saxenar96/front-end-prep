@@ -1,7 +1,12 @@
-import { Button } from "@/components/ui/button"
+import { DataTable } from "@/components/dataTable/data-table"
+// import { Button } from "@/components/ui/button"
+import { columns, DataTableProblemEntry } from "@/const/data-table-columns"
 import { getProblemsByDifficulty } from "@/const/problems"
 import { DIFFICULTY_TITLES, PROBLEM_DIFFICULTY } from "@/types/problem"
-import Link from "next/link"
+// import { Row } from "@tanstack/react-table"
+// import { redirect } from "next/navigation"
+
+// import Link from "next/link"
 
 function getDiffTitle(diff: string) {
     if (diff === 'easy') return DIFFICULTY_TITLES.easy
@@ -10,31 +15,30 @@ function getDiffTitle(diff: string) {
 }
 
 export default async function ProblemPage({
-    params 
+    params,
 }: {
     params: Promise<{ difficulty: string }>
 }) {
     const { difficulty } = (await params)
     const title = getDiffTitle(difficulty)
     const problemSet = getProblemsByDifficulty(PROBLEM_DIFFICULTY[title])
-    
+    const dataTableEntries: DataTableProblemEntry[] = problemSet.map((entry) => {
+        const { id, title, difficulty, problemType, estimatedCompletionTime } = entry
+
+        return {
+            id,
+            title,
+            difficulty,
+            problemType,
+            estimatedCompletionTime,
+            link: id
+        }
+    })
+
     return (
-        <div>
+        <div className="container mx-auto py-10">
             <h1 className="text-[2em] pb-[0.3em] font-bold">{ `${title} Problems` }</h1>
-            <div className="flex flex-col justify-start items-start">
-                {
-                    problemSet.map(problem => (
-                        <Button key={problem.id} variant="link" asChild>
-                            <Link href={problem.url}>
-                                <>
-                                    {problem.icon && (<problem.icon />)}
-                                    {problem.title}
-                                </>
-                            </Link>
-                        </Button>
-                    ))
-                }
-            </div>
+            <DataTable columns={columns} data={dataTableEntries} />
         </div>
     )
 }
