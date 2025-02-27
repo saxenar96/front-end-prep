@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { DIFFICULTY_TITLES, PROBLEM_DIFFICULTY, PROBLEM_TYPES, ProblemInfo } from "@/types/problem"
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, BicepsFlexed, Clock } from "lucide-react"
 import './general.css'
 
 export type DataTableProblemEntry = Omit<ProblemInfo, 'icon' | 'solutionComponent'> & { link: string }
@@ -23,6 +23,7 @@ export const columns: ColumnDef<DataTableProblemEntry>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
+          <BicepsFlexed />
           Difficulty
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -35,7 +36,13 @@ export const columns: ColumnDef<DataTableProblemEntry>[] = [
   },
   {
     accessorKey: "problemType",
-    header: "Problem Type",
+    header: ({ column }) => {
+      return (
+        <div>
+          Problem Type
+        </div>
+      )
+    },
     cell: ({ row }) => {
       const problemType: PROBLEM_TYPES = row.getValue('problemType')
       return problemType === PROBLEM_TYPES.Javascript ? (
@@ -47,7 +54,17 @@ export const columns: ColumnDef<DataTableProblemEntry>[] = [
   },
   {
     accessorKey: "estimatedCompletionTime",
-    header: "Estimated Completion Time",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={'ghost'}
+          className="p-0"
+        >
+          <Clock />
+          Estimated Completion Time
+        </Button>
+      )
+    },
     cell: ({ row }) => <div>{ row.getValue('estimatedCompletionTime') } min</div>
   },
   {
