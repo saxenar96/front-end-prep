@@ -20,8 +20,8 @@ export default async function ProblemPage({
     params: Promise<{ difficulty: string }>
 }) {
     const { difficulty } = (await params)
-    const title = getDiffTitle(difficulty)
-    const problemSet = getProblemsByDifficulty(PROBLEM_DIFFICULTY[title])
+    const title = difficulty === 'all-problems' ? undefined : PROBLEM_DIFFICULTY[getDiffTitle(difficulty)]
+    const problemSet = getProblemsByDifficulty(title)
     const dataTableEntries: DataTableProblemEntry[] = problemSet.map((entry) => {
         const { id, title, difficulty, problemType, estimatedCompletionTime } = entry
 
@@ -37,7 +37,7 @@ export default async function ProblemPage({
 
     return (
         <div className="container mx-auto py-10">
-            <h1 className="text-[2em] pb-[0.3em] font-bold">{ `${title} Problems` }</h1>
+            <h1 className="text-[2em] pb-[0.3em] font-bold">{ `${title ?? 'All'} Problems` }</h1>
             <DataTable columns={columns} data={dataTableEntries} />
         </div>
     )

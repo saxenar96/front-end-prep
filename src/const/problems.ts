@@ -93,7 +93,16 @@ export function getProblemById(id: string): ProblemEntry | undefined {
     } : undefined
 }
 
-export function getProblemsByDifficulty(difficulty: PROBLEM_DIFFICULTY): ProblemEntry[] {
+export function getProblemsByDifficulty(difficulty?: PROBLEM_DIFFICULTY): ProblemEntry[] {
+    if (!difficulty) {
+        return problems.map(prob => {
+            return {
+                ...prob,
+                url: `/${prob.difficulty}/${toKebabCase(prob.title)}`
+            }
+        })
+    }
+
     return problems
         .filter((item) => item.difficulty === difficulty)
         .map(prob => {

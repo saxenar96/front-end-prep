@@ -62,7 +62,7 @@ export default function HomePage() {
                             </TooltipContent>
                         </Tooltip>
                     </div>
-                    <Link href="/easy/accordion">
+                    <Link href="/all-problems">
                         <Button className="w-fit">Get Started</Button>
                     </Link>
                 </div>
