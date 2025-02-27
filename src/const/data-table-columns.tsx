@@ -49,5 +49,10 @@ export const columns: ColumnDef<DataTableProblemEntry>[] = [
     accessorKey: "estimatedCompletionTime",
     header: "Estimated Completion Time",
     cell: ({ row }) => <div>{ row.getValue('estimatedCompletionTime') } min</div>
+  },
+  {
+    accessorKey: 'id',
+    header: () => null,
+    cell: () => null
   }
 ]

@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({
   })
 
   const onRowClick = (row: Row<TData>) => {
-    const path = `/${row.getValue('difficulty')}/${row.original['id'] as string}`
+    const path = `/${row.getValue('difficulty')}/${row.getValue('id')}`
     router.push(path)
   }
 
