@@ -15,9 +15,14 @@ export default function Problem(props: ProblemProps) {
     const [ codeButtons, setCodeButtons ] = useState<PanelButtonProps[]>([])
 
     const MyComponent = useMemo(() => {
-        if (codeString) {
-            return executeCode(codeString, cssString)
-        } else {
+        try {
+            if (codeString) {
+                return executeCode(codeString, cssString)
+            } else {
+                return undefined
+            }
+        } catch(e) {
+            console.log('Error with code', e)
             return undefined
         }
     }, [runs]);

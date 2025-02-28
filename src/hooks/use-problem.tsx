@@ -1,6 +1,7 @@
 import { CodeEditor } from "@/components/codeEditor";
 import { CodeEditorLanguages } from "@/components/codeEditor/config";
 import { defaultCodeSnippet } from "@/components/codeEditor/const";
+import ErrorBoundary from "@/components/errorBoundary/errorBoundary";
 import { PanelTabProps } from "@/components/panel/config";
 import { ProblemProps } from "@/components/problem/config";
 import { ProblemTab } from "@/components/problem/problemTab";
@@ -100,10 +101,14 @@ export function useProblem(problemProps: ProblemProps) {
             {
                 id: "output",
                 title: "Output",
-                content:  codeContent ? (<div className={uniqueClassName}>{codeContent}</div>) : (<>No Output</>)
+                content:  codeContent ? (
+                    <ErrorBoundary resets={runs}>
+                        <div className={uniqueClassName}>{codeContent}</div>
+                    </ErrorBoundary>
+                ) : (<>No Output</>)
             }
         ])
-    }, [codeContent])
+    }, [codeContent, runs])
 
     return {problemTabs, codeTabs, outputTabs, codeString, codeContent, setCodeContent, cssString, runs, setRuns}
 }
