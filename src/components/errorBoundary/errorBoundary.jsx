@@ -38,13 +38,6 @@ class ErrorBoundary extends React.Component {
             <div className='w-full h-fit p-4 bg-[#FF5555] text-white rounded-sm font-medium'>
                 <h4>Error: {this.state.error.message}</h4>
             </div>
-            <button
-              type="button"
-              className='w-fit'
-              onClick={() => this.setState({ hasError: false })}
-            >
-              Try again?
-            </button>
           </div>
         )
       }

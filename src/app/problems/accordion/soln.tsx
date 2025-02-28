@@ -38,8 +38,11 @@ function AccordionItem(props: {title: string, description: string}): JSX.Element
     const [expanded, setExpanded] = useState(false)
     return (
         <div>
-            <div className='flex justify-between items-center border-b-[1px] border-solid border-black hover:cursor-pointer'>
-                <h3 onClick={() => setExpanded((prev) => !prev)}>{title}</h3>
+            <div
+                className='flex justify-between items-center border-b-[1px] border-solid border-black hover:cursor-pointer'
+                onClick={() => setExpanded((prev) => !prev)}
+            >
+                <h3>{title}</h3>
                 {
                     expanded ? (
                         <div>-</div>
