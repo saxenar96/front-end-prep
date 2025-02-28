@@ -5,12 +5,12 @@ The user should be able to see all of the numbers they have entered. In addition
 # Requirements
 - The total sum should be displayed at the top
 - There should be an input field (where the user can enter a number) and a Submit button to save the user's input
-    - Upon clicking Submit, you should also clear the input
+    - Upon clicking Submit, the input should be saved and also clear the input field.
 - Each of the numbers should be displayed under the input and button components.
 - When the user clicks the number, the number will be deleted and its value should be subtracted from the sum
 
 # Styling Guide
-- Each number, when submitted should have the following styles:
+- Each number, when submitted, should have the following styles:
     - Background Color: `#eee`
     - Border
         - Width: 1px
