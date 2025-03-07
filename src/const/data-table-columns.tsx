@@ -54,7 +54,7 @@ export const columns: ColumnDef<DataTableProblemEntry>[] = [
   },
   {
     accessorKey: "estimatedCompletionTime",
-    header: ({ column }) => {
+    header: () => {
       return (
         <Button
           variant={'ghost'}
