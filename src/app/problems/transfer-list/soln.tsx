@@ -76,7 +76,7 @@ function CheckList(props: {items: string[], onChange: (selections: number[]) => 
     }, [selected])
 
     const handleSelection = (index: number, checked: boolean) => {
-        let newSelected = [...selected]
+        const newSelected = [...selected]
         if (checked) {
             newSelected.push(index)
         } else {
@@ -89,7 +89,7 @@ function CheckList(props: {items: string[], onChange: (selections: number[]) => 
         <div className='flex flex-col gap-2'>
             {
                 items.map((item, index) => (
-                    <div className='flex items-center gap-2 w-fit'>
+                    <div className='flex items-center gap-2 w-fit' key={`checkitem-${index}`}>
                         <input type='checkbox' checked={selected.includes(index)} key={`right-${index}`} value={index} onChange={(e) => handleSelection(index, e.currentTarget.checked)} />
                         <span>{ item }</span>
                     </div>

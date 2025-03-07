@@ -1,5 +1,5 @@
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
-import React, { useState } from 'react'
+import React from 'react'
 
 class ErrorBoundary extends React.Component {
     constructor(props) {

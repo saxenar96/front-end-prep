@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import './soln.css'
-import { ChevronDown, ChevronUp } from 'lucide-react'
 
 const data = [
     {

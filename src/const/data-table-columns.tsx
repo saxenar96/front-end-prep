@@ -36,7 +36,7 @@ export const columns: ColumnDef<DataTableProblemEntry>[] = [
   },
   {
     accessorKey: "problemType",
-    header: ({ column }) => {
+    header: () => {
       return (
         <div>
           Problem Type
